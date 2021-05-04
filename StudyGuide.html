@@ -1,0 +1,2313 @@
+<header>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+    body {
+      font-family: 'Lora', serif;
+    }
+
+    h1 {
+      text-align: center;
+    }
+  </style>
+</header>
+
+<br><h1 style="font-size: 50px;">CSCI 341 Final Study Guide Full Question List</h1>
+<br><h1>Numbering Systems</h1><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>For the custom floating point format use the following:</p>
+<p>Total Bits: 8 bits</p>
+<p>Fraction Bits: 4 bits</p>
+<p>Sign Bits: 1 bit</p>
+<table style="border-collapse: collapse; width: 97.2431%;" border="1">
+<tbody>
+<tr>
+<td style="width: 24.8711%;">Decimal</td>
+<td style="width: 25%;">IEEE Single Precision</td>
+<td style="width: 25%;">Custom</td>
+<td style="width: 25%;">Unsigned Binary</td>
+</tr>
+<tr>
+<td style="width: 24.8711%;">10.0333</td>
+<td style="width: 25%;"></td>
+<td style="width: 25%;"></td>
+<td style="width: 25%;"></td>
+</tr>
+<tr>
+<td style="width: 24.8711%;">45491</td>
+<td style="width: 25%;"></td>
+<td style="width: 25%;"></td>
+<td style="width: 25%;"></td>
+</tr>
+<tr>
+<td style="width: 24.8711%;">3018.0076</td>
+<td style="width: 25%;"></td>
+<td style="width: 25%;"></td>
+<td style="width: 25%;"></td>
+</tr>
+</tbody>
+</table>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><span>In hexadecimal notation, each character can be represented by four binary bits in a fashion shown below:<br>0 x 3 1 F A<sub>16</sub><br>is the same as:</span></p>
+<p><span>0011 0001 1111 1010<sub>2</sub></span></p>
+<p><span>&nbsp;</span></p>
+<p><span>In order to translate hexadecimal to decimal, we can take advantage of this fact, multiplying each digit by a power of 16 (16<sup>0</sup> at the rightmost digit 16<sup>1</sup> for the next digit, etc.) to retrieve a decimal number.</span></p>
+<p><span>&nbsp;</span></p>
+<p><span>Use this method to translate the hexadecimal number 0xC54E2 to decimal.</span></p>
+<p><span>&nbsp;</span></p>
+<p><span>Answer: </span></p>
+<p><span>2<sub>16</sub> = 0010<sub>2</sub> = 2<sub>10</sub> * 16<sup>0</sup></span></p>
+<p><span>E<sub>16</sub> = 1110<sub>2</sub> = 14<sub>10</sub> * 16<sup>1</sup></span></p>
+<p><span>4<sub>16</sub> = 0100<sub>2</sub> = 4<sub>10</sub> * 16<sup>2</sup></span></p>
+<p><span>5<sub>16</sub> = 0101<sub>2</sub> = 5<sub>10</sub> * 16<sup>3</sup></span></p>
+<p><span>C<sub>16</sub> = 1100<sub>2</sub> = 12<sub>10</sub> * 16<sup>4</sup></span></p>
+<p><span>Summing these numbers multiplied by their appropriate powers of 16 we get: 808162</span></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><strong>Q: </strong>What is the biggest and smallest decimal numbers possible using 12-bit sign-magnitude notation? What about in two's-compliment notation?</p>
+<p><strong>A:</strong> In sign-magnitude, the first bit is just for the sign, so we have 11 bits to work with for the magnitude.</p>
+<p>Setting the rest of the 11 bits to 1, we get 2<sup>10</sup> + 2<sup>9</sup> + 2<sup>8</sup> ... + 2<sup>1</sup> + 2<sup>0</sup> as the largest magnitude possible, which is 2047. When the sign bit is 0, the biggest decimal number possible is <strong>2047,&nbsp;</strong>and when the sign bit is 1, the smallest possible is <strong>-2047.</strong></p>
+<p>As for two's-compliment, the biggest number is one where the most significant bit is 0, and the rest are 1s, and the smallest number is one where the most significant bit is 1, and the rest are 0s. Or, using the formulas, the biggest number will be 2<sup>(n - 1)</sup> - 1 and the smallest will be -2<sup>(n - 1)</sup>. We have 12 bits, so plugging 12 in for n in the two formulas, we get <strong>2047</strong> as the biggest decimal number possible, and <strong>-2048</strong> as the smallest decimal number possible.</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>What is the value of the hexadecimal number 3F4D in binary?</p>
+<p>Solution:</p>
+<p>(3)_16 = (0011)_2</p>
+<p>(F)_16 = (1111)_2</p>
+<p>(4)_16 = (0100)_2</p>
+<p>(D)_16 = (1101)_2</p>
+<p>(3F4D)_16 = (11111101001101)_2</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+<p><strong><span>Convert the following floating point number into a hex number:</span></strong></p>
+<p><strong><span>&nbsp;</span></strong></p>
+<p><strong><span>01000101010010000000000000000000</span></strong></p>
+<p><strong><span>&nbsp;</span></strong></p>
+<p><strong><span>Correct answer:</span></strong></p>
+<p><strong><span>C80</span></strong></p>
+<p><strong><span>&nbsp;</span></strong></p>
+<p><strong><span>-1^s x (1+Fraction)x2^(Exponent-127)</span></strong></p>
+<p><strong><span>(-1)^0 x (1+0.1001)<sub>2</sub>x2(138-127)</span></strong></p>
+<p><strong><span>(1.1001)<sub>2</sub>x2^11</span></strong></p>
+<p><strong><span>1.5625<sub>10</sub> x 2^11 = 3200</span></strong></p>
+<p><strong><span>&nbsp;</span></strong></p>
+<p><strong><span>3200<sub>2</sub> = 110010000000</span></strong></p>
+<p><strong>110010000000 = C80</strong></p>
+</div><br><h1>Floating Point Numbers</h1><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+
+<ol>
+<li>Suppose you are working on a simulation with an astrophysicist. In the simulation, they want you to enter certain constants that will be used in the calculations, listed in the table below. For each constant in the table, explain if a single or double precision number would be best to minimize the number of bits used to store the value.</li>
+</ol>
+<table style="width: 96.2838%; height: 301px;">
+<tbody>
+<tr style="height: 53px;">
+<td style="width: 51.6228%; height: 53px;" width="327">
+<p><strong>Constant Name</strong></p>
+</td>
+<td style="width: 48.2018%; height: 53px;" width="311">
+<p><strong>Value</strong></p>
+</td>
+</tr>
+<tr style="height: 53px;">
+<td style="width: 51.6228%; height: 53px;" width="327">
+<p>Planck’s Constant</p>
+</td>
+<td style="width: 48.2018%; height: 53px;" width="311">
+<p>6.626 * 10^-34</p>
+</td>
+</tr>
+<tr style="height: 53px;">
+<td style="width: 51.6228%; height: 53px;" width="327">
+<p>Density at the center of a black hole</p>
+</td>
+<td style="width: 48.2018%; height: 53px;" width="311">
+<p>∞ (infinity)</p>
+</td>
+</tr>
+<tr style="height: 53px;">
+<td style="width: 51.6228%; height: 53px;" width="327">
+<p>Number of atoms in the universe</p>
+</td>
+<td style="width: 48.2018%; height: 53px;" width="311">
+<p>10^80</p>
+</td>
+</tr>
+<tr style="height: 89px;">
+<td style="width: 51.6228%; height: 89px;" width="327">
+<p>Distance between the Sun and&nbsp; Earth</p>
+<p>(Astronomical Unit)</p>
+</td>
+<td style="width: 48.2018%; height: 89px;" width="311">
+<p>1.495 * 10^7</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><span style="color: #e03e2d; " data-darkreader-inline-color="">Answer:</span></p>
+<p><span style="color: #e03e2d; " data-darkreader-inline-color="">Since the range of real values that a single-precision floating-point number can produce is 2*10^-38 to 2*10^38, both Planck’s constant and the distance from the Sun to Earth can be stored as a single-precision value. The number of atoms in the universe is outside the range of a single-precision number. Since the largest number a double-precision can produce is 2*10^308, it will fit in a double-precision number. As for the density of a black hole, it can be expressed fully with both a single and double precision number, but it would take up less space as a single-precision number.</span></p>
+<p>2. True or False: a single-precision floating-point number can be used to fully express an irrational number (do not consider the cases of ∞ or NaN to be irrational). Explain.</p>
+<p><span style="color: #e03e2d; " data-darkreader-inline-color="">Answer:</span></p>
+<p><span style="color: #e03e2d; " data-darkreader-inline-color="">False. Since the value of a single-precision number is calculated using the multiplication of other rational numbers, it cannot produce an irrational number.</span></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Convert the number -1.69360420 to IEEE floating point format in binary and hex.</p>
+<p>Answer: 1 01111111 10110001100100000000110</p>
+<p>Hex: 0xbfd8c806</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+<p><strong>H</strong><strong>ow do you compute bias? What is the bias for a 10-bit exponent?</strong></p>
+<p><strong>ANSWER: The goal is to have 00..00 be the smallest exponent possible and 11..11 to be the largest exponent possible. To accomplish this, the bias needs to fulfill the equation exponent - bias = 0 at half of the exponent’s maximum value. If we have an 10-bit exponent the largest number possible is 2^10 - 1 = 1023. 1023 // 2 = 512. Using 512 as the bias: 0 (00..00) - 512 = -512. 1023 (11..11) - 512 = 511. </strong></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>**This is something I was always confused about**</p>
+<p>&nbsp;</p>
+<p>How do you calculate the exponent bias for a floating-point number?</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Ah yes. Just who I needed. See, I've got a problem. There's a little piece of data I need for my Totally Not Malicious And Not World Domination Plan (TaNoMANoWD for short). It's protected by a key in a strange format I can't quite process (40s processors are, shall we say, limited, and especially mine after The Incident). I need you to be a good little guy/girl/android/humanoid Tesla and translate it to a nice simple binary for me. The number is 3.171875, and I need it in IEEE-754 single precision to accommodate my poor weak circuitry. Oh, and don't even think about using a calculator. Bob Ross is watching, and if he catches you, well, let's just say those little trees ain't gonna be quite so happy anymore.</p>
+<p>&nbsp;</p>
+<p>Answer: 0&nbsp; 1000 0000&nbsp; 1001 0110 0000 0000 0000 000</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+<p>&nbsp;</p>
+<p><span>Floating Point Numbers</span></p>
+<p><span>Question:</span></p>
+<p>&nbsp;</p>
+<p><span>Using single precision Floating Point numbers with 6 exponent bits and 9 fractional bits determine the bias of this scheme and the decimal representation of&nbsp; 1 010101 110010000.</span></p>
+<p>&nbsp;</p>
+<p><span>Answer:</span></p>
+<p><span>The Bias of this scheme is 2^(exponent bits - 1) - 1. For this question 2^(6-1) - 1 = 31</span></p>
+<p><span>The decimal value can be determined by:</span></p>
+<p><span> </span><span>Sign = 1 =&gt; negative</span></p>
+<p><span> </span><span>Exponent = 100110 = 2^1 + 2^2 + 2^5 = 42 =&gt;&nbsp; 38 -31 = 7&nbsp;</span></p>
+<p><span> </span><span>Fraction = 1.11001 = 2^0 + 2^-1 + 2^-2 + 2^-5 = 1.78125</span></p>
+<p><span> </span><span>Decimal value is -1.78125 * 2^7=&nbsp; -228 decimal</span></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Imagine a new floating point representation that uses 48 bits rather than 32 or 64, called 3/2 precision. This format uses the same number of sign and exponent bits.</p>
+<p>&nbsp;</p>
+<p>a.) Describe the differences this new 3/2 precision representation has compared to single precision (32-bit). (i.e. bias, range, precision, etc).</p>
+<p>&nbsp;</p>
+<p>b.) Convert the following floating point numbers, using this 3/2 representation, into decimal:</p>
+<p>&nbsp; &nbsp; &nbsp;1.) 1 0010 1111 1000 0000 0000 0000 0000 0000 1100 0000 0000 111</p>
+<p>&nbsp; &nbsp; &nbsp;2.) 0 1111 1111 0000 0000 0000 0000 0000 0000 0000 0000 0000 000</p>
+<p>&nbsp;</p>
+<p>c.) Could you write the values from part b.) using single precision FP? If so, write the single precision FP representation, if not, explain why.</p>
+<p>&nbsp;</p>
+<p>ANSWER KEY:</p>
+<p>a.) This new FP format would have the same bias and the same range of FP values, but with a significantly higher precision due to its increased number of fraction bits.</p>
+<p>b.)</p>
+<p>&nbsp; &nbsp; &nbsp;1.) -1.47911 * 10^-31</p>
+<p>&nbsp; &nbsp; &nbsp;2.) Infinity</p>
+<p>c.) While it is technically possible to write the first number using single precision FP, the number would lose much of its precision, and would not really be the same number. The second number can be written as:</p>
+<p>0 1111 1111 0000 0000 0000 0000 0000 000</p>
+<p>&nbsp;</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+<p>&nbsp;</p>
+<p>IEEE single precision floating point notation defines the sign field as 1 bit, the exponent field as 8 bits, and the significand/mantissa as 23 bits. Explain the tradeoffs between instead having a larger exponent field and a smaller significand/mantissa, and explain the tradeoffs of the opposite: having a smaller exponent field and larger significand/mantissa.</p>
+<p>&nbsp;</p>
+<p>Answer: Having a larger exponent field and smaller significand/mantissa would make the range of possible numbers larger, but the precision of said numbers smaller. In the opposite situation the range of possible numbers to be represented would be smaller, however the precision would be greater.</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Sample Review Question</p>
+<p>&nbsp;</p>
+<p>If the single floating-point number is equivalent to a computable value, compute that value. If not, please categorize them as a denormalized number, infinity, or not a real number (NaN).</p>
+<ol>
+<li>a) 0 0000 0000 0010 0000 0011 0101 0011</li>
+<li>b) 1 0111 1110 1010 0000 0000 0000 0000</li>
+<li>c) 1 1111 1111 0000 0000 0000 0000 0000</li>
+<li>d) 1 1111 1111 0000 0000 0000 0000 0001</li>
+<li>e) 0 1000 0011 1111 1010 0000 0000 0000</li>
+</ol>
+<p>&nbsp;</p>
+<p>Solutions:</p>
+<ol>
+<li>a) Denormalized</li>
+<li>b) -0.75</li>
+<li>c) Infinity</li>
+<li>d) NaN</li>
+<li>e) 31.625</li>
+</ol>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>What are the load and store instructions for the floating-point registers?</p>
+<p>A) lwf, swf</p>
+<p>B) lf, sf</p>
+<p>C) lwc1, swc1&nbsp; &nbsp; &nbsp; &nbsp;--correct--</p>
+<p>D) lwa1, swa1</p>
+<p>&nbsp;</p>
+<p>I wrote and submitted this yesterday but just reopened my computer for the first time and it hadn't sent, sorry for the delay.</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Q1:<br>Consider a new floating-point type comprised of 32 bits: 1 sign bit, 8 exponent bits, 22 fraction bits, and a single special bit that transforms the added exponent bias from -127 to +127. Keeping in mind that exponents 0 and 255 are always reserved for special occasions, what is the range of possible (usable) exponents for this data type?</p>
+<p>A1:<br>Since 0 and 255 are reserved (unusable), the base range of usable exponents with 8 bits is [1, 254], or [0, 255] without 0 or 255.<br>Special bit not set: [1, 254] - 127 -&gt; [-126, +127]<br>Special bit set: [1, 254] + 127 -&gt; [+128, +381]<br>Combining these results in the total exponent range of [-126, +381]</p>
+<p>Q2:<br>Consider a second new floating-point type, following the rules of the above except containing 64 total bits: 1 sign bit, 11 exponent bits, 51 fraction bits, and 1 special bit that will change the bias from negative to positive. Remembering that 0 and the maximum exponent are always reserved, what is the range of possible (usable) exponents for this data type?</p>
+<p>A2:<br>Default range: [0, 2^11 - 1] = [0, 2047] without 0 or 2047 = [1, 2046]<br>Default bias: -(2^(11-1)-1) = -1023<br>Special bit not set: [1, 2046] - 1023 = [-1022, +1023]<br>Special bit set: [1, 2046] + 1023 = [+1024, +3069]<br>Total exponent range: [-1022, +3069]</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>An enterprising comp sci major decided they want to secretly hide a floating point value inside a string. To do this, they make a 16- or 32- length string and correlate a consonant or a space to a zero-valued bit and a vowel (a, e, i, o, u) to a 1-value. For instance, the conversion of “and” = 100, and the conversion of “home work” = 010100100. Using this method, what number is hidden in the string “Studying Computer Science Always”?</p>
+<p>Answer:</p>
+<ol>
+<ol>
+<ul>
+<li>The binary conversion is 00100100001001010000110010100100</li>
+<li>The floating point conversion is:</li>
+<ul>
+<li>S=0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (positive sign)</li>
+<li>E=72&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (actual exponent: 2^-55)</li>
+<li>Significand = 1 + 0.2894482612609863</li>
+<li>Actual value = 3.57893787179e-17</li>
+</ul>
+</ul>
+</ol>
+</ol>
+</div><br><h1>MIPS Memory Access</h1><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>In the situation of storing data within a MIPS array such as:</p>
+<p>&nbsp; .data</p>
+<p>&nbsp; &nbsp; &nbsp;array: .space 20</p>
+<p>How would you access a character stored at the 5th index and store it in $s0?</p>
+<p>Answer:&nbsp;</p>
+<p>la $t0, array</p>
+<p>lbu $s0, 5($t0)</p>
+<p>or</p>
+<p>la $t0, array</p>
+<p>addi $t0, $0, 5</p>
+<p>lbu $s0, 0($t0)</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>(True/False)</p>
+<p>Given the following C++ code and translation into MIPS, determine if the translation is true or false. If the translation is true, explain why and if the translation is false, give the correct MIPS code.&nbsp;</p>
+<p>C++:</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; int array[] = {1,2,3};</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; int x = 5;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; array[4] = array[1] * x;</p>
+<p>MIPS:</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; la $t0, array</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; addi $t1, $0, 5</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; lw $t3, 4($t0)</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; mul $t2, $t3, $t2</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sw $t2, 16($t0)</p>
+<p>ANSWER:</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; True. The MIPS translation is correct because you load in the array, load 5 in, the get the correct index from the array, take that multiply by the 5, and then store it in the correct address for the array. Since each MIPS line is written correct and does the same as the c++ code, the answer is true.</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Translate the given C code into MIPS given the base address of A is in $s0 and the base address of B is in $s1:<br>B[k * 8] = x + A[i + j]</p>
+<p>Solution:</p>
+<p>add $t0, $s2, $s3<br>sll $t0, $t0, 2<br>add $t0, $s0, $t0<br>lw $t1, 0($t0)<br>add $t2, $s4, $t1<br>sll $t3, $s5, 5<br>sw $t2, 0($t3)</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Given that:<br>&nbsp; $s0 contains the base address of integer array M<br>&nbsp; $s1 contains the integer variable i<br>&nbsp; $s2 contains the integer variable j<br>Write MIPS code that swaps the values at M[i + 1] and M[i + j].</p>
+<hr>
+<p>Sample Answer:<br># Getting the address of M[i] in $t0, and M[i + j] in $t1<br>sll $t0, $s1, 2<br>add $t0, $t0, $s0<br>sll $t1, $s2, 2<br>add $t1, $t1, $t0</p>
+<p># Loading the variables at M[i + 1] and M[i + j] into $t2 and $t3 respectively<br>lw $t2, 4($t0)<br>lw $t3, 0($t1)</p>
+<p># Storing the variables back at their new locations<br>sw $t2, 0($t1)<br>sw $t3, 4($t0)</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Q: True/False: It is possible to store thousands of numbers in the stack ($sp).</p>
+<p>A: False; MIPS does not contain enough memory to store thousands of numbers in the stack.</p>
+<p>B: True; MIPS makes room in the computer to store all numbers needed in the program.</p>
+<p><strong>C:&nbsp; False; iterating $sp too many times will create an overflow error. (Correct Answer)</strong></p>
+<p>D: True; $sp has infinite space to store variables.</p>
+<p>&nbsp;</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>What is wrong with the following MIPS Assembly code?</p>
+<p>addi $t0, $zero, 125</p>
+<p>addi $t1, $zero, 150</p>
+<p>add $t2, $zero, $zero</p>
+<p>For:</p>
+<p>add $t2, $zero, $t0</p>
+<p>sw $t2, 0($t0)</p>
+<p>addi $t0, $t0, 2</p>
+<p>slt $t3, $t0, $t1</p>
+<p>bne $t3, $zero, For</p>
+<p>&nbsp;</p>
+<p>Answer:</p>
+<p>The program is attempting to store words at invalid addresses. Because the index starts on a number that is not divisible by 4, and it is incremented by 2 each loop, it is not able to store each word, which contains 4 bytes.</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Q: When accessing a value from an array in MIPS, why do you need to multiply the index by four?</p>
+<p>A: Because each 32-bit element is 4 words long.</p>
+</div><br><h1>MIPS Bitwise Instructions</h1><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Assume $s0 stores a value of 4389, and $s1 stores a value of 28786532. What is the value of $s0 and $s1 after these instructions?</p>
+<p>&nbsp;</p>
+<p>sll $s0, $s0, 7</p>
+<p>srl $s1, $s1, 3</p>
+<p>and $s0, $s0, $s1</p>
+<p>or $s1, $s0, $s1</p>
+<p>&nbsp;</p>
+<p>Answer:</p>
+<p>$s0 – 33408</p>
+<p>$s1 - 3598316</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Question:</p>
+<p>There are 32 bits. How would you isolate bits 8 - 15.&nbsp; That is, replace the remaining bits with 0s. The bits should be in their original location when finished. Use Mips code. The value is located in $s1.</p>
+<p>Answer:</p>
+<p>srl $s1, $s1, 3</p>
+<p>sll $s1, $s1, 3</p>
+<p>sll $s1, $s1, 4</p>
+<p>srl $s1, $s1, 4</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Which of the following is false, given that the value in register $t0 is 79?</p>
+<p>i. After computing the instructions: and $s0, $t0, $t0 as well as or $s1, $t0, $t0, the values in $s0 and $s1 will be equivalent.</p>
+<p>ii. After computing the instruction: andi $s0, $t0, 0x0030, the register $s0 hold a value of 0.</p>
+<p>iii. The largest immediate value that can be used in an ori instruction is 0xFFFF.</p>
+<p>iv. After computing the instruction: or $s0, $t0, $t0, the register $s0 hold a value of 0.</p>
+<p>&nbsp;</p>
+<p>The last one, iv, is false because computing the or of a number with itself will just result in the same number.&nbsp; In this case, 1001111 or 1001111 = 1001111.</p>
+</div><br><h1>MIPS Arithmetic Instructions</h1><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Find the error in this code</p>
+<p>add $t0, $s0, $s1</p>
+<p>addi $t1, 10</p>
+<p>sub $t2, $t0, $t1</p>
+<p>addi $t2, $s1</p>
+<p>sw $t0, 0($sp)</p>
+<p>&nbsp;</p>
+<p>Correct answer is that add immediately is being used with two registers.&nbsp;</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><span>1. Which of the following line(s) of code copies the value from register $t0 into another register, $s0, in MIPS instructions?</span></p>
+<p style="padding-left: 40px;"><strong>a. add $s0, $t0, $zero</strong></p>
+<p style="padding-left: 40px;"><strong>b. addi $s0, $t0, 0</strong></p>
+<p style="padding-left: 40px;"><span>c. add $s0, $t0, 0</span></p>
+<p style="padding-left: 40px;"><span>d. add $t0, $s0, $zero</span></p>
+<p>&nbsp;</p>
+<p><span>2. Convert the following C statement into MIPS instructions. You may assume that the C variables a, b, c, d, and e are equivalent to MIPS registers $s0, $s1, $s2, $s3 and $s4, respectively.</span></p>
+<p style="padding-left: 240px;"><span> </span><span>c = b - (a + d) - e;</span></p>
+<p style="padding-left: 240px;">&nbsp;</p>
+<p><span>a. sub $t0, $s3, $s4</span></p>
+<p><span>&nbsp; &nbsp; add $t0, $t0, $s0</span></p>
+<p><span>&nbsp; &nbsp; sub $s2, $s1, $t0</span></p>
+<p><span>b. add $t0, $s0, $s3</span></p>
+<p><span>&nbsp; &nbsp; sub $t0, $t0, $s1</span></p>
+<p><span>&nbsp; &nbsp; sub $s2, $t0, $s4</span></p>
+<p><strong>c. add $t0, $s0, $s3</strong></p>
+<p><strong></strong><strong></strong><strong>&nbsp; &nbsp; sub $t0, $s1, $t0</strong></p>
+<p><strong></strong><strong></strong><strong>&nbsp; &nbsp; sub $s2, $t0, $s4</strong></p>
+<p><span>d. sub $t0, $s1, $s4</span></p>
+<p><span>&nbsp; &nbsp; add $t1, $s0, $s3</span></p>
+<p><span>&nbsp; &nbsp; add $s2, $t0, $t1</span></p>
+<p>&nbsp;</p>
+<p><span>3. What is the value of </span><span>$s1</span><span> after the following MIPS code runs?</span></p>
+<p>&nbsp;</p>
+<p style="padding-left: 40px;"><span>Initial values:</span></p>
+<p style="padding-left: 40px;"><span> </span><span>$t0 = 4</span></p>
+<p style="padding-left: 40px;"><span> </span><span>$t1 = 16</span></p>
+<p style="padding-left: 40px;"><span>$s0 = 11</span></p>
+<p style="padding-left: 40px;"><span> </span><span>$s1 = 3</span></p>
+<p style="padding-left: 40px;"><span> </span><span>$s2 = 5</span></p>
+<p style="padding-left: 240px;"><span> </span><span> </span><span> </span><span> </span><span>sub $t0, $s0, $t0</span></p>
+<p style="padding-left: 240px;"><span> </span><span> </span><span> </span><span> </span><span>add $s2, $s2, $s1</span></p>
+<p style="padding-left: 240px;"><span> </span><span> </span><span> </span><span> </span><span>addi $t1, $t0, 2</span></p>
+<p style="padding-left: 240px;"><span> </span><span> </span><span> </span><span> </span><span>sub $s0, $t1, $s2</span></p>
+<p style="padding-left: 240px;"><span> </span><span> </span><span> </span><span> </span><span>sub $s1, $s1, $s0</span></p>
+<p style="padding-left: 240px;"><span> </span><span> </span><span> </span><span> </span><span>addi $s1, $s1, 14</span></p>
+<p>&nbsp;</p>
+<p><span>a. 12</span></p>
+<p><span>b. 19</span></p>
+<p><span>c. 13</span><strong></strong></p>
+<p><strong>d. 16</strong></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><a class="instructure_file_link instructure_scribd_file" title="Hw 13B - Review Question.pdf" href="https://elearning.mines.edu/users/16883/files/3076754?wrap=1&amp;verifier=0YWcObnKLsn357psBOnnPoP4yDgZ6EX38MFSRLPQ" target="_blank" data-canvas-previewable="false">Hw 13B - Review Question.pdf</a>&nbsp;&nbsp;</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><strong>Will this operation result in an overflow?</strong></p>
+<p><strong>&nbsp; &nbsp;1 0 1 0</strong></p>
+<p><strong>+ 0 1 1 0</strong></p>
+<p><strong>If this was a 2's complement number would this still be an overflow? Why or why not?</strong></p>
+<p>Answers:</p>
+<p>Yes this will result in an overflow since when added it will result in 1 0000 which is over the 4 bits available in this case.</p>
+<p>If this number was a signed number there will be a carry-out but no overflow. The sum of these two numbers, -6 and 6 is correct and because of the carry-out it is not an overflow. An overflow will also never occur when adding two numbers of opposite signs.</p>
+<p>&nbsp;</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+<p>𝐹𝑖𝑛𝑑 𝑡ℎ𝑒 𝑑𝑒𝑐𝑖𝑚𝑎𝑙 𝑜𝑣𝑒𝑟𝑓𝑙𝑜𝑤 𝑟𝑒𝑠𝑢𝑙𝑡 𝑜𝑓 𝐴 + 𝐵 𝑤ℎ𝑒𝑟𝑒 𝐴 = 0011 0111 𝑎𝑛𝑑 𝐵 = 𝐴 + 𝐴.<br>2𝐴 = 0110 1110 (𝑠ℎ𝑖𝑓𝑡 𝑙𝑒𝑓𝑡 𝑜𝑟 𝑗𝑢𝑠𝑡 𝑎𝑑𝑑𝑖𝑛𝑔)<br>0011 0111 + 0110 1110 = 1001 0010 = −128 + 18 = −110</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>1. Suppose you want to replicate the C modulo operator (%) using MIPS. Which of the following snippets of code would accomplish this? (For this problem, try to compute $s0 % $s1 and store the result in $s2).</p>
+<p>(a) mod $s2, $s0, $s1</p>
+<p>(b) mult $s0, $s1</p>
+<p>&nbsp; &nbsp; mfhi $s2</p>
+<p>(c) div $s0, $s1</p>
+<p>&nbsp; &nbsp; mflo $s2</p>
+<p>(d) div $s0, $s1</p>
+<p>&nbsp; &nbsp; mfhi $s2</p>
+<p>&nbsp;</p>
+<p>ANSWER: (d)</p>
+<p>&nbsp;</p>
+<p>2. Write a snippet of code in MIPS that computes the value of $s0 + 0xAABC3FFE. Store the result in $s1. (Hint: a simple addi will not work here).</p>
+<p>ANSWER:</p>
+<p>lui $t0, 0xAABC</p>
+<p>ori $t0, $t0, 0x3FFE</p>
+<p>add $s1, $s0, $at</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Select the sum that would overflow if that addition was performed using 8 bits stored with 2's complement.</p>
+<ol>
+<li>&nbsp;128 + -253</li>
+<li>132 + 124</li>
+<li>14 + 3</li>
+<li>-111 + -145</li>
+<li>79 + 94</li>
+</ol>
+<p>Correct answer: 2</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>MIPS Arithmetic Instructions:</p>
+<p>Here is a Pseudocode of a Computer's 32-bit multiplication algorithm:</p>
+<p>___________________________________________________________________________</p>
+<p>Product=0;</p>
+<p>for (int i=0;i&lt;=31;i++){</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (MultiplierLSB){</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Product = Product + Multiplicand;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Multiplicand shift 1 bit _______;&nbsp; //#1</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Multiplier shift&nbsp;&nbsp; 1 bit _______;&nbsp; &nbsp; &nbsp;//#2</p>
+<p>}</p>
+<p>return product;</p>
+<p>___________________________________________________________________________</p>
+<p>What should be filled into the blanks (#1, #2)?</p>
+<p>a.&nbsp; &nbsp;Right, Right</p>
+<p>b.&nbsp; &nbsp;Right, Left</p>
+<p>c.&nbsp; &nbsp;Left, Right</p>
+<p>d.&nbsp; &nbsp;Left, Left</p>
+<p>&nbsp;</p>
+<p>Correct Answer: C</p>
+<p>&nbsp;</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+<ol>
+<li aria-level="2"><span>Translate the following into C code, assuming that a represents $s0, b represents $s1, c represents $s2, and f represents $t0:</span></li>
+</ol>
+<p><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;addi $s0, $zero, 10</span></p>
+<p><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;add $s0, $s0, $s2</span></p>
+<p><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;sub $t0, $s0, $s1</span></p>
+<p><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;add $s2, $s1, $t0</span><span>&nbsp; &nbsp; &nbsp;</span></p>
+<p><span>&nbsp; &nbsp; &nbsp;Answer:&nbsp;</span></p>
+<p><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; a = 0 + 10;</span></p>
+<p><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; a = a + c;</span></p>
+<p><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; f = a - b;</span></p>
+<p><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; c = b + f;</span></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>MIPS Arithmetic Instructions:</p>
+<p>1. Regardless of the representation, can arithmetic operations create results that are too large to fit in the fixed word size? Also, can multiplication operations be used on signed operands?</p>
+<p>2. Translate the following code, A = (B % C) * D + E into MIPS readable code. (A-E corresponds to $t1-$t5)</p>
+<p>Answers:</p>
+<p>1. Yes, Yes</p>
+<p>2.</p>
+<p>div $t2, $t3</p>
+<p>mfhi $t1</p>
+<p>mult $t1, $t4</p>
+<p>mfhi $t1</p>
+<p>add $t1, $t1, $t5</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>MIPS Arithmetic Instructions question (multiple choice):</p>
+<p>Given the following set of instructions, assuming registers start at 0:</p>
+<p>addi $t0, $0, 3</p>
+<p>addi $t1, $0, 21</p>
+<p>addi $t2 $0, 8</p>
+<p>loop:</p>
+<p>div $t1, $t2</p>
+<p>mfhi $t3</p>
+<p>add $t1, $t1, $t3</p>
+<p>addi $t0, $t0, -1</p>
+<p>bne $t0, $0, loop</p>
+<p>What is the value of $t1 at the end of the loop?</p>
+<p>a) 28 (Wrong, result of thinking mfhi gives quotient rather than remainder)</p>
+<p>b) 32 (correct)</p>
+<p>c) 8 (Wrong, result of missing that the register $t1 has the value 21 initially and is what the remainder of 21/8 is added to)</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><strong>Free Response</strong></p>
+<p>What will the values of registers $s0 through $s4 be after the following set of instructions?</p>
+<p>addi $s0, $0, 20</p>
+<p>addi $s1, $0, 35</p>
+<p>sub $s2, $s0, $s1</p>
+<p>mult $s2, $s0</p>
+<p>add $s3, $0, $s2&nbsp;</p>
+<p>mflo $s2</p>
+<p>div $s2, $s1</p>
+<p>mfhi $s4</p>
+<p>Enter your answer separated by commas: $s0, $s1, $s2, $s3, $s4</p>
+<p>&nbsp;</p>
+<p><strong>Expected Answer:</strong></p>
+<p>20, 35, -300, -15, -20</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>what is the largest value&nbsp; that can be output by this mips add function without overflow?</p>
+<p>the answer would be (2^31)-1 or 2,147,483,647</p>
+</div><br><h1>MIPS Recursion</h1><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  Question: In MIPS recursion, where must the return address be stored?<div><br></div><div>a) the queue</div><div>b) the stack</div><div>c) both a &amp; b</div><div>d) none of the above&nbsp;</div><div><br></div><div><br></div><div>Answer: a)</div><div><br></div><div>Explanation: the return address must be stored in the stack as well as the callee and called saved register or else the data will be lost completely when the function calls itself, or recurses.&nbsp;</div>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><span>How is the stack used in MIPS recursion? Is it necessary to use the stack and how does the stack effect or limit recursion?</span></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <div><span class="Apple-tab-span" style="white-space: pre;">	</span>Which command(s) must be used for recursive functions?</div><div><span class="Apple-tab-span" style="white-space: pre;">	</span>◦ j</div><div><span class="Apple-tab-span" style="white-space: pre;">	</span>◦ jal</div><div><span class="Apple-tab-span" style="white-space: pre;">	</span>◦ jr</div><div><span class="Apple-tab-span" style="white-space: pre;">	</span>◦ beq</div><div><br></div><div>ANSWER: jal, jr</div>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Question: What is the final output for $v0 for this recursive procedure if the initial value for register $a0 is 6<br>and $a1 is 0.</p>
+<p>recursive:<br>&nbsp; &nbsp; andi $t1, $a0, 1<br>&nbsp; &nbsp; beq $t1, $0, even<br>&nbsp; &nbsp; sll $a1, $a1, 1<br>&nbsp; &nbsp;even:<br>&nbsp; &nbsp; addi $a1, $a1, 1<br>&nbsp; &nbsp; addi $a0, $a0, -1<br>&nbsp; &nbsp; bne $a0, $0, recursive<br>&nbsp; &nbsp; add $v0, $a1, $0<br>&nbsp; &nbsp; jr $ra</p>
+<p>Answer:</p>
+<p>21</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>If we have a recursive procedure in MIPS where we need to store two registers through each procedure call, by how much do we need to increment and decrement the stack pointer each call?</p>
+<p>a. 3</p>
+<p>b. 2</p>
+<p>c. 12</p>
+<p>d. 8</p>
+<p>The correct answer is c, we must change the stack pointer to make room for the three variables, the two we are saving, and the return address for that call.&nbsp; These three variables correspond with 12 bits of the stack pointer.&nbsp;</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><strong>Topic: MIPS Recursion</strong></p>
+<ol>
+<li aria-level="1"><span>(Free Response) Highlight and explain the problems with the following MIPS recursive function, Factorial. If there is code missing (noted by “Missing Code…”) insert the proper code. You can assume registers $t0, $a0, and the stack pointer are properly initialized and allocated when the function has been called. You can also assume the starting value of the factorial is positive.</span></li>
+</ol>
+<p><span># other code...</span></p>
+<p><span>Factorial:</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;lw $t0, 0($sp)</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;beq $t0, 1, return&nbsp;</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;addi $t0, $t0, -1</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;addi $sp, $sp, -12</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;sw $t0, 4($sp)&nbsp;</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;Missing code...&nbsp;</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;jal Factorial</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;lw $t1, 4($sp)</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;lw $ra, 8($sp)</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;addi $sp, $sp, -12&nbsp;</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;lw $t0, 0($sp)</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;mult $t1, $t0</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;mfhi $a0&nbsp;</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;sw $a0, 4($sp)</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;jr $ra</span></p>
+<p><span>&nbsp;</span></p>
+<p><span>return:</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;addi $t0, $t0, 1</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;sw $t0, 4($sp)</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;jr $ra</span><span> </span><span> </span></p>
+<p><br><br><br><br><br><br><br><br><br><br><br><br><br><br></p>
+<p><strong>Topic: MIPS Recursion ANSWERS</strong></p>
+<ol>
+<li aria-level="1"><span>(Free Response) Highlight and explain the problems with the following MIPS recursive function, Factorial. If there is code missing (noted by “Missing Code…”) insert the proper code. You can assume registers $t0, $a0, and the stack pointer are properly initialized and allocated when the function has been called. You can also assume the starting value of the factorial is positive.</span></li>
+</ol>
+<p><span># other code...</span></p>
+<p><span>Factorial:</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;lw $t0, 0($sp)</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;beq $t0, </span><span style=" background-color: #f8cac6;">1</span><span>, return </span><span style=" color: #e03e2d;"># Base case is incorrect, should be 0.</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;addi $t0, $t0, -1</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;addi $sp, $sp, -12</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;sw $t0, </span><span style=" background-color: #f8cac6;">4</span><span>($sp) </span><span style=" color: #e03e2d;"># Value is improperly saved to the stack.</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;<span style="background-color: #f8cac6;">&nbsp;</span></span><span style=" background-color: #f8cac6;">Missing code...</span><span> </span><span style=" color: #e03e2d;"># Missing return address code “sw $ra, 8($sp)”</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;jal Factorial</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;lw $t1, 4($sp)</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;lw $ra, 8($sp)</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;addi $sp, $sp, </span><span style=" background-color: #f8cac6;">-</span><span>12 </span><span style=" color: #e03e2d;"># Allocates space in the wrong direction.</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;lw $t0, 0($sp)</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;mult $t1, $t0</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="background-color: #f8cac6;">mf</span></span><span style=" background-color: #f8cac6;">hi</span><span> $a0 </span><span style=" color: #e03e2d;"># Retrieved wrong register from mult, should be mflo.</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;sw $a0, 4($sp)</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;jr $ra</span></p>
+<p><span>&nbsp;</span></p>
+<p><span>return:</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;addi $t0, $t0, 1</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;sw $t0, 4($sp)</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;jr $ra</span><span> </span><span> </span><span>&nbsp;&nbsp;</span></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><span>My Question</span></p>
+<p><span>&nbsp;</span></p>
+<p><span>Part 1: In three lines of MIPS code create space for three words on the stack, save the return address to the stack, and then save a register in the stack.</span></p>
+<p><span>&nbsp;</span></p>
+<p><span>Answer:</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; addi $sp, $sp, -12</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sw $ra, 8($sp)</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sw $s0, 4($sp) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //note that $s0 can be any register. </span></p>
+<p><span>&nbsp;</span></p>
+<p><span>Part 2: In 4 lines of MIPS code re load the data from the register in part 1, re load the return address, pop the stack frame, and return to caller</span></p>
+<p><span>&nbsp;</span></p>
+<p><span>Answer: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></p>
+<p><span>&nbsp;</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lw $s0, 4($sp)</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lw $ra, 8($sp)</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; addi $sp, $sp, 12</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jr $ra</span></p>
+<p><span>&nbsp;</span></p>
+<p><span>Part 3: What registers are saved during recursive calls</span></p>
+<p><span>&nbsp;</span></p>
+<p><span>Answer:</span></p>
+<p><span>&nbsp;</span></p>
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $s_ registers. </span></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><strong><u>Impliment a recursive function that itterates through factorials. Recursive portion needed only. (ie user inputs 4 the program would go through 1 * 2 * 3 * 4 = 24)</u></strong></p>
+<p><strong><span>Recurse:</span></strong></p>
+<p><strong><span>&nbsp; Mult $s0,$t0</span></strong></p>
+<p><strong><span>&nbsp; #assumes $t0 was initialized as 1 at the beginning of the program</span></strong></p>
+<p><strong><span>&nbsp; Mflo $t0</span></strong></p>
+<p><strong><span>&nbsp; Addi $s0,$s0,1</span></strong></p>
+<p><strong><span>&nbsp; Beq $s0, $s1,exit </span></strong></p>
+<p><strong><span>&nbsp; #assumes $s1 is what the user inputted and the program assigns $s0 to 1 at </span></strong></p>
+<p><strong><span>&nbsp; &nbsp; the </span></strong><strong>start </strong></p>
+<p><strong><span>&nbsp; J recurse</span></strong></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>If the stack has 1024 available bytes and your recursive function pushes 5 words to the stack and pops 2 words per iteration, how many iterations could you have before you run out of stack space</p>
+<p>&nbsp;</p>
+<p>A) 85 iterations</p>
+<p>B) 86 iterations</p>
+<p>C) 51 iterations</p>
+<p>D) 52 iterations&nbsp;</p>
+</div><br><h1>MIPS to C Translation</h1><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><span>Topic: MIPS To C Translation</span></p>
+<p>&nbsp;</p>
+<p><span>Q:</span></p>
+<p><span>Translate the following MIPS code into C</span></p>
+<p>&nbsp;</p>
+<p><span>Loop:</span></p>
+<p><span>bge $s0, $s1, Exit</span></p>
+<p><span>addi $s2, $s2, 1</span></p>
+<p><span>add $s0, $s0, $s0</span></p>
+<p><span>j Loop</span></p>
+<p><span>Exit:</span></p>
+<p>&nbsp;</p>
+<p><span><br></span><span>A:</span></p>
+<p><span> </span><span>while(x &lt;&nbsp; y){</span></p>
+<p><span>i++;</span></p>
+<p><span>x = x * 2;</span></p>
+<p>}</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+<p><span style="text-decoration: underline;"><strong>Question:</strong></span></p>
+<p><strong>1) Translate the following MIPS code into C</strong></p>
+<p>&nbsp; &nbsp; &nbsp;.data</p>
+<p>&nbsp; &nbsp; &nbsp;welcome_message:</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .asciiz "Please enter an integer: "</p>
+<p>&nbsp; &nbsp; &nbsp;thank_you:</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .asciiz "Thank you for your time!"</p>
+<p>&nbsp; &nbsp; &nbsp;even:</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;.asciiz "Your number is even! \n"</p>
+<p>&nbsp; &nbsp; &nbsp;odd:</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;.asciiz "Your number is odd! \n"</p>
+<p>&nbsp; &nbsp; &nbsp;.text</p>
+<p>main:</p>
+<p>&nbsp; &nbsp; &nbsp;li $v0, 4</p>
+<p>&nbsp; &nbsp; &nbsp;la $a0, welcome_message</p>
+<p>&nbsp; &nbsp; &nbsp;syscall</p>
+<p>&nbsp; &nbsp; &nbsp;li $v0, 5</p>
+<p>&nbsp; &nbsp; &nbsp;syscall</p>
+<p>&nbsp; &nbsp; &nbsp;add $s0, $v0, $0</p>
+<p>&nbsp; &nbsp; &nbsp;addi $t0, $0, 2</p>
+<p>&nbsp; &nbsp; &nbsp;div $s0, $t0</p>
+<p>&nbsp; &nbsp; &nbsp;mfhi $t1</p>
+<p>&nbsp; &nbsp; &nbsp;beq $t1, $0, even_number</p>
+<p>odd_number:</p>
+<p>&nbsp; &nbsp; &nbsp;li $v0, 4</p>
+<p>&nbsp; &nbsp; &nbsp;la $a0, odd</p>
+<p>&nbsp; &nbsp; &nbsp;syscall</p>
+<p>&nbsp; &nbsp; &nbsp;j exit</p>
+<p>even_number:</p>
+<p>&nbsp; &nbsp; &nbsp;li $v0, 4</p>
+<p>&nbsp; &nbsp; &nbsp;la $a0, even</p>
+<p>&nbsp; &nbsp; &nbsp;syscall</p>
+<p>exit:</p>
+<p>&nbsp; &nbsp; &nbsp;li $v0, 4</p>
+<p>&nbsp; &nbsp; &nbsp;la $a0, thank_you</p>
+<p>&nbsp; &nbsp; &nbsp;syscall</p>
+<p>&nbsp; &nbsp; &nbsp;li $v0, 10</p>
+<p>&nbsp; &nbsp; &nbsp;syscall</p>
+<p>&nbsp;</p>
+<p><strong>Answer (assume that all appropriate libraries are installed):</strong></p>
+<p>int userNum;</p>
+<p>cout &lt;&lt; "Please enter an integer: ";</p>
+<p>cin &gt;&gt; userNum;</p>
+<p>cout &lt;&lt; endl;</p>
+<p>if((userNum % 2) == 0){</p>
+<p>&nbsp; &nbsp; &nbsp;cout &lt;&lt; "Your number is even!" &lt;&lt; endl;</p>
+<p>} else {</p>
+<p>&nbsp; &nbsp; &nbsp;cout &lt;&lt; "Your number is odd!" &lt;&lt; endl;</p>
+<p>}</p>
+<p>cout &lt;&lt; "Thank you for your time!" &lt;&lt; endl;</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>assume the variables a-e are assigned to $s0-$s4 respectively:</p>
+<p>add $s1, $s1, $s1</p>
+<p>add $s1, $s1, $s1</p>
+<p>sub $s4, $s4, $s1</p>
+<p>add $s0, $s2, $s3</p>
+<p>add $s0, $s0, $s0</p>
+<p>add $s0, $s0, $s4</p>
+<p>sub $s0, $0, $s0</p>
+<p>answer:<br>int a, b, c, d, e;<br>a = -(2(c+d) + (e - 4b))</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>The first question written is the iterative version of the Fibonacci sequence. It calculates the first 15 terms.<br>Students should convert it to C and identify the algorithm that it represents.&nbsp;</p>
+<p>The second question is the iterative version of the Euclidean algorithm to find the GCD of two integers.&nbsp;<br>Students should convert it to C/C++ and identify the algorithm that it represents.</p>
+<p># Iterative version of the Fibonacci sequence - remove this comment if you will use this question.<br># Convert this code into C/C++ and identify the algorithm.</p>
+<p>.text<br>main:&nbsp;</p>
+<p>addi $s0,$0,15<br>add $s1,$0,$0</p>
+<p>add $t0,$0,$0&nbsp;<br>addi $t1,$0,1</p>
+<p>Loop:<br>beq $s0,$s1,finished<br>&nbsp; &nbsp; add $a0,$t0,$0<br>&nbsp; &nbsp; addi $v0,$0,1 &nbsp; &nbsp; # Print integer syscall<br>&nbsp; &nbsp; syscall&nbsp;<br>&nbsp; &nbsp;&nbsp;<br>&nbsp; &nbsp; add $a0,$0,' '<br>&nbsp; &nbsp; addi $v0,$0,11 &nbsp; &nbsp;# Print character syscall<br>&nbsp; &nbsp; syscall&nbsp;<br>&nbsp; &nbsp;&nbsp;<br>&nbsp; &nbsp; add $t3,$t1,$0&nbsp;<br>&nbsp; &nbsp; add $t1,$t1,$t0<br>&nbsp; &nbsp; add $t0,$t3,$0<br>&nbsp; &nbsp;&nbsp;<br>&nbsp; &nbsp; addi $s1,$s1,1<br>&nbsp; &nbsp; j Loop<br>&nbsp; &nbsp;&nbsp;</p>
+<p>finished:&nbsp;<br>&nbsp; &nbsp; addi $v0,$0,10&nbsp;<br>&nbsp; &nbsp; syscall</p>
+<p>&nbsp;</p>
+<p>// Fibonacci c code.</p>
+<p>numIterations = 15<br>count = 0</p>
+<p>previous = 0<br>current = 1</p>
+<p>while (count &lt; numIterations) {<br>&nbsp; &nbsp; printf("%d ", previous)<br>&nbsp; &nbsp; temp = current&nbsp;<br>&nbsp; &nbsp; current += previous<br>&nbsp; &nbsp; previous = current</p>
+<p>&nbsp;</p>
+<p># Euclidean algorithm - remove this comment if you will use this question</p>
+<p># Convert to C/C++ and identify the algorithm.</p>
+<p>.data&nbsp;<br>inputs: .asciiz "Input two positive integers\n"<br>result: .asciiz "Result: "</p>
+<p><br>.text&nbsp;</p>
+<p>main:&nbsp;</p>
+<p>la $a0,inputs<br>addi $v0,$0,4 &nbsp; &nbsp; &nbsp; # Print string<br>syscall</p>
+<p>addi $v0,$0,5 &nbsp; &nbsp; &nbsp; # Read integer syscall<br>syscall&nbsp;</p>
+<p>add $s0,$v0,$0&nbsp;</p>
+<p>addi $v0,$0,5 &nbsp; &nbsp; &nbsp; # Read integer syscall<br>syscall&nbsp;</p>
+<p>add $s1,$v0,$0</p>
+<p>Loop:<br>beq $s1,$0,finished&nbsp;<br>&nbsp; &nbsp; div $s0,$s1<br>&nbsp; &nbsp;&nbsp;<br>&nbsp; &nbsp; add $s0,$s1,$0&nbsp;<br>&nbsp; &nbsp; mfhi $s1<br>&nbsp; &nbsp; j Loop</p>
+<p>&nbsp;</p>
+<p>finished:&nbsp;<br>&nbsp; &nbsp; la $a0,result&nbsp;<br>&nbsp; &nbsp; addi $v0,$0,4 &nbsp; # Print string<br>&nbsp; &nbsp; syscall&nbsp;<br>&nbsp; &nbsp;&nbsp;<br>&nbsp; &nbsp; add $a0,$s0,$0&nbsp;<br>&nbsp; &nbsp; addi $v0,$0,1 &nbsp;# Print integer<br>&nbsp; &nbsp; syscall<br>&nbsp; &nbsp;&nbsp;<br>&nbsp; &nbsp; addi $v0,$0,10 # exit<br>&nbsp; &nbsp; syscall</p>
+<p>&nbsp;</p>
+<p>// Euclidean C++</p>
+<p>cout &lt;&lt; "Input two positive integers" &lt;&lt; endl;&nbsp;</p>
+<p>int a,b</p>
+<p>cin &gt;&gt; a &gt;&gt; b;</p>
+<p>while (b != 0) {<br>&nbsp; &nbsp; a = b&nbsp;<br>&nbsp; &nbsp; b = a % b<br>}</p>
+<p>cout &lt;&lt; "Result: " &lt;&lt; a &lt;&lt; endl;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Multiple Choice:</p>
+<p>Translate the following MIPS assembly code to C/C++. Assume that the registers $t0, $t1, $t2, and $t3 correspond to the following C/C++ variables a, b, c, and d.</p>
+<p>addi $t0, $t0, 5</p>
+<p>addi $t2, $t1, 3</p>
+<p>div $t0, $t2</p>
+<p>mflo $t3</p>
+<p>&nbsp;</p>
+<p>Options:</p>
+<p>a) d = 5/c</p>
+<p>b) d = (a+5)%(b+3)</p>
+<p>c) d = a/c</p>
+<p>d) d = (5+a)/(3+c)</p>
+<p>&nbsp;</p>
+<p>Correct Choice is letter C.</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Convert this MIPS code into C++:</p>
+<p>addi $t0, $0, 0</p>
+<p>addi $t1, $0, 10</p>
+<p>loop:</p>
+<p>addi $v0, $0, 1</p>
+<p>move $a0, $t0</p>
+<p>syscall</p>
+<p>addi $t0, $t0, 1</p>
+<p>bne $t0, $t1, loop</p>
+<p>addi $v0, $0, 10</p>
+<p>syscall</p>
+</div><br><h1>R-Type Instruction Formats</h1><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>1. (MC) Which is NOT true for R-Type Instructions?</p>
+<p>a. 32<sub>10<sup>&nbsp;</sup></sub> is the add function code</p>
+<p>b. Bits 31-26 decide what instruction should be used</p>
+<p>c. R-types include shift, jump to register, add and multiply</p>
+<p>d. They always have 5 or more unused bits</p>
+<p>e. All of the above are true</p>
+<p><strong><span style="color: #e03e2d;">ANSWER: B</span></strong></p>
+<p><span style="color: #e03e2d;">Because R-type all have the same opcode and use the function to decide which instruction occurs</span></p>
+<p>&nbsp;</p>
+<p><span style="color: #000000;">2. (FR) What is the MIPS code and the HEX equivalent to the following C code, only one MIPS instruction should be used?</span></p>
+<p><span style="color: #000000;">b=a/4096;</span></p>
+<p><span style="color: #000000;">Assume a is in $s0 and b is in $s1.</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span style="color: #000000;"><span style="color: #e03e2d;">log<sub>2</sub>(4096) = 12<sub>10</sub></span></span></p>
+<p><strong><span style="color: #e03e2d;">Instruction in MIPS:&nbsp; </span></strong></p>
+<p><strong><span style="color: #e03e2d;">srl $s1, $s0, 12</span></strong></p>
+<p><strong><span style="color: #e03e2d;">Insturction in HEX:&nbsp;</span></strong></p>
+<p><span style="color: #e03e2d;">shamt:&nbsp;12<sub>10</sub> =&gt; 01100<sub>2</sub></span></p>
+<p><span style="color: #e03e2d;">srl: op= 000000<sub>2</sub> , fun= 02<sub>hex&nbsp;</sub>= 000010<sub>2</sub></span></p>
+<p><span style="color: #e03e2d;">rs= 00000&nbsp; *Unused*</span></p>
+<p><span style="color: #e03e2d;">rt= $s0=&gt; 16<sub>10</sub> =10000<sub>2</sub></span></p>
+<p><span style="color: #e03e2d;">rd= $s1=&gt; 17<sub>10</sub> =10001<sub>2</sub></span></p>
+<p><span style="color: #e03e2d;">Binary: 00000000000100001000101100000010</span></p>
+<p><strong><span style="color: #e03e2d;">HEX:&nbsp; 00108B02</span></strong></p>
+<p>&nbsp;</p>
+<p><span style="color: #000000;">3. (MC) What is the range of values that $t2 can be in the example below?&nbsp;</span></p>
+<p><span style="color: #000000;">sll $t0, $t1, $t2</span></p>
+<p><span style="color: #000000;">a. 0-31</span></p>
+<p><span style="color: #000000;">b. 0-16</span></p>
+<p><span style="color: #000000;">c. 0-32</span></p>
+<p><span style="color: #000000;">d. 0-15</span></p>
+<p><strong><span style="color: #e03e2d;">ANSWER: A (because shamt can hold 5 bits which is 32 values)&nbsp;</span></strong></p>
+<p>&nbsp;</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><span>Which of the following R-Type instructions do not ONLY use registers?</span></p>
+<p><span>a. addu</span></p>
+<p><span>b. sra</span></p>
+<p><span>c. srlv</span></p>
+<p><span>d. jr</span></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Convert "add $s5, $t7, $s3" into binary equivalent. If we were to compare the binary equivalent of this to "add $s1, $t3, $t5", which bits would be the same (what parts of R-Type instruction format) and which parts would differ? Why?</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Translate R type instruction into its binary equivalent and what is different about shifting R type instructions in comparison to non shifting R type instructions.</p>
+<p>sll $s0, $t0, 5</p>
+<p>ans:<br>000000 10000 01000 00000 00101 000000</p>
+<p>There different because there is shamt box that is exclusively used for shifting and when it is a shift the shift value goes in that location instead of the third register.&nbsp;</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Question:&nbsp; Which of the following binary numbers corresponds to an add instruction?&nbsp; How can you tell without converting either to its corresponding R-Type MIPS instruction?</p>
+<p>000000 01000 01000 01000 00000 100000</p>
+<p>000000 00000 01000 01000 01000 000010</p>
+<p>&nbsp;</p>
+<p>Answer:&nbsp; The first binary number corresponds to an add instruction (add $8, $8, $8), while the second binary number corresponds to a shift right logical instruction (srl $8, $8, 8).&nbsp; There are multiple ways you can tell without having to convert either, but the easiest is by looking at the shift amount, bits 6-10, which evaluates to 0 for every R-type instruction except for shift left logical and shift right logical.&nbsp; The idea behind this question is for the student to think about R-Format in such a way that they can use all of three bits of difference in the source register, shift amount, and function code, primarily the shift amount, to quickly determine which of the two is not an add instruction.</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>If a new instruction called "sock" requires three registers to use, would this instruction be an R-type instruction? If it is, what would the binary form of the instruction below be? (the opcode/funct is 00/10_hex).</p>
+<p>sock $t0, $t1, $t2</p>
+<p>Answer: 00000001001010100100000000010000</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+<p>Question: Free Responce</p>
+<p>The following registers cotain these values<br>$s2=5 &nbsp;<br>$s3=6&nbsp;<br>$t8=7&nbsp;<br>$t9=8</p>
+<p>What are the values contained in each register after the following R-type instruction is executed</p>
+<p>Instruction: 0000 0011 0011 1000 1001 0000 0010 0010</p>
+<p>$s2=___<br>$s3=___<br>$t8=___<br>$t9=___</p>
+<p>Work:<br>1. organize into R-type format: op:000000 rs:11001 rt:11000 rd:10010 shamt:00000 func:100010&nbsp;<br>2. convert op &amp; func to hex -&gt; 0/22<br>3. Use reference sheet -&gt; instruction: sub rd rs rt<br>4. convert registers to decimal: rs: 25-&gt;$t9 &nbsp;rt: 24-&gt;$t8 &nbsp; rd: 18-&gt;$s2<br>5. Final operation: sub $s2, $t9, $t8 -&gt; $s2 = 8-7 = 1</p>
+<p>$s2=1&nbsp;<br>$s3=6&nbsp;<br>$t8=7&nbsp;<br>$t9=8</p>
+</div><br><h1>I&J-Type Instruction Formats</h1><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>What do bits 0-15 represent when converting a branch instruction to machine code?&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp; Bits 0-15 represent the immediate value in an instruction. In this case, the immediate value represents the address that we are jumping to if the condition turns out to be true.&nbsp;</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <ol>
+<ol>
+<li>Match the following I-type terms to their proper bit numbers</li>
+<ol>
+<ol>
+<li>Op&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 25-21</li>
+<li>Rs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0-15</li>
+<li>Rt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31-26</li>
+<li>Constant/address&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;20-16</li>
+</ol>
+<li>SOLUTION:</li>
+<ol>
+<li>Op&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31-26</li>
+<li>Rs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 25-21</li>
+<li>Rt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 20-16</li>
+<li>Constant/address&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0-15</li>
+</ol>
+</ol>
+<li>Given 3 examples of I&amp;J-type instructions</li>
+<ol>
+<li>EX: lw, sw, addi, jal, j</li>
+</ol>
+<li>How many bits are in the address of a J-type intsruction?</li>
+<ol>
+<li>26 bits</li>
+</ol>
+</ol>
+</ol>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Translate this line of C code into machine code. Assume a is stored in $s0 and b is stored in $t1.</p>
+<p>a = b + 21;</p>
+<p>&nbsp;</p>
+<p>Solution:</p>
+<p>Assembly: addi $s0, $t1, 0x15</p>
+<p>addi opcode = 0x8 = 001000</p>
+<p>rs = $t1 = 9 = 01001</p>
+<p>rt = $s0 = 16 = 10000</p>
+<p>immediate = 0x15 = 0000 0000 0001 0101</p>
+<p><strong>Machine code: 001000 01001 10000 0000 0000 0001 0101</strong></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><span>Question(I&amp;J-Type Instruction Formats):</span></p>
+<p><span>&nbsp;</span></p>
+<p>MIPS uses 32 bit instruction formats I type, J-type and R-type. Without changing the instruction size if we are to increase the number of registers from 32 to 128 in the MIPS architecture then;</p>
+<p>&nbsp;</p>
+<p>1.How many bits should be allocated to the register fields in each instruction type?</p>
+<p>&nbsp;</p>
+<p>Number of bits required for register field for each type of instruction is: log<sub>2</sub>128 = 7</p>
+<p>&nbsp;</p>
+<ol start="2">
+<li>If the additional bits are taken from any&nbsp;unused field or the immediate field, describe the new layout of the I type and J type instruction and what is the maximum&nbsp;immediate value&nbsp;that the new architecture can support.</li>
+</ol>
+<p>&nbsp;</p>
+<p>I-type instruction format = opcode(6 bits)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; src(5 bits)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dest(5 bits)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; immediate(16 bits)</p>
+<p>&nbsp;</p>
+<p>This is in 32 bits. It is known that src and dest are log2(32) = 5 bits</p>
+<p>&nbsp;</p>
+<p>For 128 registers: src and dest are log2(128) = 7 bits</p>
+<p>&nbsp;</p>
+<p>It is known that opcode is also 7 bits. So immediate would be 32 – (7+7+7) = 11</p>
+<p>&nbsp;</p>
+<p>New Architecture would be:</p>
+<p>opcode(7 bits) src(7 bits)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dest(7 bits)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; immediate(11 bits)</p>
+<p>&nbsp;</p>
+<p>Max and Min Immediate value is 2<sup>11-1</sup>-1 = 1023 in 2’s complement</p>
+<p>Max and Min Immediate value is 2<sup>11</sup>-1 = 2047 in unsigned format</p>
+<p>&nbsp;</p>
+<p>J-type instruction format= opcode(6 bits)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; target address(26 bits)</p>
+<p>Since it does not use src or dest registers. It does not affect the instruction format</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+<p>I&amp;J-Type Instruction Formats:</p>
+<p>&nbsp;</p>
+<p>What value is stored in bits 25-21 in the following instruction:</p>
+<p>Beq $s0, $t3, branch</p>
+<p>&nbsp;</p>
+<p>Answer: 16.</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Given a MIPS instruction, how many possible I and J type instructions are there?</p>
+<p>a)64</p>
+<p>b)63 &lt;-</p>
+<p>c)128</p>
+<p>&nbsp;</p>
+<p>2^6 = 64 total instructions. R-type uses OP of 0, so 64-1 = 63 possible IJ instructions.</p>
+</div><br><h1>R-Type Instruction Formats</h1><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><span>Convert the following r-type instruction to binary:</span></p>
+<p><span>sll $s1, $s0, 4</span></p>
+<p>&nbsp;</p>
+<p><span>Answer: Because it is an r-type instruction the opcode is always zero. The function of the green card for mips shows shift left logical to be equal to 00 in hex which is 0000 0000 in binary we cut the first two bits to get 6 bits for funct. Then the shamt would be 00100 because that is 4 in binary. $s0 in decimal is 16 which is 10000 in binary and because it is in the middle it goes in the register target slot.&nbsp;</span></p>
+<p><span>16/2=8r0, 8/2= 4r0,4/2 = 2r0, 2/2=1r0, 1/2=0r1</span></p>
+<p><span>$s1 in decimal is 17 which is 10001 in binary and because it is at the beginning it goes to the register destination slot.</span></p>
+<p><span>17/2 =8r1 8/2=4r0,4/2=2r0,2/2=1r0, 1/2=0r1</span></p>
+<p><span>There is no register source because this is a shift instruction.</span></p>
+<p>&nbsp;</p>
+<table>
+<tbody>
+<tr>
+<td>
+<p><span>opcode</span></p>
+</td>
+<td>
+<p><span>rs</span></p>
+</td>
+<td>
+<p><span>rt</span></p>
+</td>
+<td>
+<p><span>rd</span></p>
+</td>
+<td>
+<p><span>shamt</span></p>
+</td>
+<td>
+<p><span>funct</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span>000000</span></p>
+</td>
+<td>
+<p><span>00000</span></p>
+</td>
+<td>
+<p><span>10000</span></p>
+</td>
+<td>
+<p><span>10001</span></p>
+</td>
+<td>
+<p><span>00100</span></p>
+</td>
+<td>
+<p><span>000000</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Question: How many bits are allocated for the shift portion (shamt) of an R-type instruction? What is the significance of this number?</p>
+<p>Answer: 5 bits. This is important because the largest number you can represent with 5 bits is 31 in decimal. This is also the maximum number of bits that you could possibly want to shift a register/number by. If you need to shift a number by a larger amount of bits, you can simply take the modulo of that number by 32.&nbsp;</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Convert the following R-Type instruction formats to MIPS:<br>a. 000000 01000 00011 00010 00000 100010 → __________________________________<br>b. 000000 00011 00010 00100 00000 100000 → __________________________________<br>c. 000000 10001 10010 01000 00000 100000 → __________________________________</p>
+<p>&nbsp;</p>
+<p>Answers:<br>a. sub $2, $8, $3 OR sub $v0, $t0, $v1<br>b. add $4, $3, $2 OR add $a0, $v1, $v0<br>c. add $8, $17, $18 OR add $t0, $s1, $s2</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Question: What are the two elements of the MIPS datapath which are key to<br>executing an R-Type instruction?</p>
+<p>Answer: The key elements of the MIPS datapath in executing an R-type instruction<br>are the register file and the ALU. The register file works to output the&nbsp;<br>respective data elements based on two input registers; which are then calculated in<br>the ALU using 4 control signal bits to indicate the operation derived from the funct field.&nbsp;<br>This edge triggered design allows for register values to be read on<br>a rising clock edge, and written on the subsequent rising edge, circumventing<br>the need to update the values on the next clock cycle.</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>In the single-cycle datapath, the main Control unit sets the control signals RegDst, Jump, Branch, MemRead, MemWrite, ALUop, ALUSrc, and RegWrite, even if the instruction is R-type. How can that work correctly since the main control unit never knows which specific R-type instruction is being executed?</p>
+<p>&nbsp;</p>
+<p><span style="text-decoration: underline;">ANS:</span> Since the opcode for every R-type instruction is 000000, the main control unit will set the signals to the same value for each R-type instruction.</p>
+</div><br><h1>CPU Performance</h1><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+<p><u>Question:</u></p>
+<p>What is the execution time of a program (M) used to store all the geologist findings on a long expedition if the clock period is 2 ns and the program requires 12 million cycles to finish storing everything?</p>
+<p><u>Answer:</u></p>
+<p>Execution time = ( Clk Cycles ) * ( Clk Cycle Time ) =</p>
+<p>= ( 12 million cycles ) * (2 * 10<sup>-9 </sup>cycles/s ) = <strong>0.024 sec</strong></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><strong>Question</strong></p>
+<p>Time inside CPUs is accounted for with clock cycles. Would it be wise to measure execution time and throughput using clock cycles alone? What else would be needed to get the complete picture?</p>
+<p><strong>Answer</strong></p>
+<p>It is possible to describe execution time and throughput in clock cycles (i.e., the units check out technically), however if this is the only metric used, we would have no way to compare performance with other systems because clock cycle times differ. We would need to account for seconds per clock cycle to give a proper diagnostic.</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>For the next few statements, please indicate whether it is an example of response time or throughput.</p>
+<p>a) When assembly lines at Ford Motor company started, it took 4 hours to produce a single car.</p>
+<p>b) Two children have started lemonade stand, they can make 50 glasses of lemonade per hour.</p>
+<p>c) At Mines, it takes the average student 3 hours to complete homework.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Answers -</p>
+<p>a) Response Time</p>
+<p>b) Throughput</p>
+<p>c) Response Time</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+<p>Computer A has a throughput of 5 instructions per millisecond, and Computer B has a throughput of 10 instructions per millisecond. Suppose there is a task containing 1500 instructions to be completed by both computers working together. How many instructions should A complete? How many instructions should B complete? What is the fastest that the task can be completed?</p>
+<p>Answer:</p>
+<p>A is half as fast as B, so we will give it half as many instructions in order for the computers to finish their work at the same time. This means A will complete 500 instructions, and B will complete 1000.</p>
+<p>(500/5) + (1000/10) = 200ms</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>CPU Performance:</p>
+<p>Which of the factors shown below can significantly affect the performance of a CPU? (can choose multiple answers)</p>
+<ul>
+<li>Clock Speed</li>
+<li>Instruction set</li>
+<li>Cache size</li>
+<li>Number of Cores</li>
+</ul>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Three computers operate on a 100 instruction set.&nbsp;</p>
+<p>Computer A has a CPI of 3.0 and a clock cycle time of 230 ps.</p>
+<p>Computer B has a CPI of 2.0</p>
+<p>Computer C has a CPI of 1.0</p>
+<p>A is the same speed as B.</p>
+<p>B is 2x faster than C.&nbsp;</p>
+<p>Find the clock cycle time of B and C.</p>
+<p>Answer : B has clock cycle time 345 ps. C has clock cycle time 57.5 ps.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Question: Computer A has a clock rate of 3 MHz and an average CPI of 3.4 and computer B has a clock rate of 4.1 MHz and a CPI described by the following table:</p>
+<table style="border-collapse: collapse; width: 97.2431%;" border="1">
+<tbody>
+<tr>
+<td style="width: 24.8711%;">Instruction Type</td>
+<td style="width: 25%;">Floating Point</td>
+<td style="width: 25%;">Memory Access</td>
+<td style="width: 25%;">Arith/Logic</td>
+</tr>
+<tr>
+<td style="width: 24.8711%;">CPI</td>
+<td style="width: 25%;">3.1</td>
+<td style="width: 25%;">3.6</td>
+<td style="width: 25%;">2.5</td>
+</tr>
+</tbody>
+</table>
+<p>If a program with 300,000,000 instructions and a percent composition listed below is run by both computers, which will finish first, and by how many seconds?</p>
+<table style="border-collapse: collapse; width: 97.329%;" border="1">
+<tbody>
+<tr>
+<td style="width: 24.8711%;">Instruction Type</td>
+<td style="width: 25%;">Floating Point</td>
+<td style="width: 25%;">Memory Access</td>
+<td style="width: 25%;">Arith/Logic</td>
+</tr>
+<tr>
+<td style="width: 24.8711%;">CPI</td>
+<td style="width: 25%;">22%</td>
+<td style="width: 25%;">34%</td>
+<td style="width: 25%;">44%</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>Answer:</p>
+<p>&nbsp; &nbsp; &nbsp; Computer A: <img class="equation_image" title="\frac{1\:second}{3,000,000\:clk}\cdot\frac{3.4\:clk}{1\:instruction}\cdot30,000,000\:instructions=34.00\:seconds" src="/equation_images/%255Cfrac%257B1%255C%253Asecond%257D%257B3%252C000%252C000%255C%253Aclk%257D%255Ccdot%255Cfrac%257B3.4%255C%253Aclk%257D%257B1%255C%253Ainstruction%257D%255Ccdot30%252C000%252C000%255C%253Ainstructions%253D34.00%255C%253Aseconds" alt="LaTeX: \frac{1\:second}{3,000,000\:clk}\cdot\frac{3.4\:clk}{1\:instruction}\cdot30,000,000\:instructions=34.00\:seconds" data-equation-content="\frac{1\:second}{3,000,000\:clk}\cdot\frac{3.4\:clk}{1\:instruction}\cdot30,000,000\:instructions=34.00\:seconds"> &nbsp;</p>
+<p>&nbsp; &nbsp; &nbsp; Computer B: <img class="equation_image" title="\frac{22\%\cdot3.1+34\%\cdot3.6+44\%\cdot2.5}{100\%}=3.01\:average\:CPI" src="/equation_images/%255Cfrac%257B22%255C%2525%255Ccdot3.1%252B34%255C%2525%255Ccdot3.6%252B44%255C%2525%255Ccdot2.5%257D%257B100%255C%2525%257D%253D3.01%255C%253Aaverage%255C%253ACPI" alt="LaTeX: \frac{22\%\cdot3.1+34\%\cdot3.6+44\%\cdot2.5}{100\%}=3.01\:average\:CPI" data-equation-content="\frac{22\%\cdot3.1+34\%\cdot3.6+44\%\cdot2.5}{100\%}=3.01\:average\:CPI">&nbsp;</p>
+<p>&nbsp; &nbsp; &nbsp; <img class="equation_image" title="\frac{1\:second}{4,100,000\:clk}\cdot\frac{3.01\:clk}{1\:instruction}\cdot30,000,000\:instructions=22.02\:seconds" src="/equation_images/%255Cfrac%257B1%255C%253Asecond%257D%257B4%252C100%252C000%255C%253Aclk%257D%255Ccdot%255Cfrac%257B3.01%255C%253Aclk%257D%257B1%255C%253Ainstruction%257D%255Ccdot30%252C000%252C000%255C%253Ainstructions%253D22.02%255C%253Aseconds" alt="LaTeX: \frac{1\:second}{4,100,000\:clk}\cdot\frac{3.01\:clk}{1\:instruction}\cdot30,000,000\:instructions=22.02\:seconds" data-equation-content="\frac{1\:second}{4,100,000\:clk}\cdot\frac{3.01\:clk}{1\:instruction}\cdot30,000,000\:instructions=22.02\:seconds">&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp; &nbsp; &nbsp; Computer B will finish first at 22.02 seconds, 11.98 seconds faster than computer A.</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Question: Computer A has a clock rate of 1.3 GHz and can compute instructions in an average of 1.72 clock cycles. Computer B has a clock speed of 1.92 GHz and can run a 3421 instruction program in 7521 clock cycles. How many times faster is computer A than computer B?<br><br>Answer: Computer A is 0.86 times faster than computer B.</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><span>&nbsp;&nbsp;&nbsp; </span><span>What is the execution time of a program P that has 29.3 million instructions and runs with an average CPI of 3.76,on a machine where the clock cycle is 5ns long?&nbsp;</span></p>
+<p><span>&nbsp;&nbsp;&nbsp; </span><span>29300000 * 3.76 = 110168000</span></p>
+<p><span>&nbsp;&nbsp;&nbsp; </span><span>110168000 * 5*10</span><span>-9</span><span> =</span><strong> 0.55084s</strong></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Select all that are true about a state element.</p>
+<p>a. a register is a state element.</p>
+<p>b. an ALU is a state element.</p>
+<p>c. a clock input is present on a state element.</p>
+<p>d. a sequential element is another name for a state element.</p>
+<p>e. a combinational element is another name for a state element.</p>
+<p>f. a state element depends only on the present input values.</p>
+<p>g. a state element has internal storage.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Answer: a,c,d,g</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><span style="color: #3598db;"><strong>How can you improve CPU Performance?</strong></span></p>
+<p><span style="color: #e03e2d;">A.</span> By decreasing the CPI (clock cycles per instruction) via new Hardware.</p>
+<p><span style="color: #e03e2d;">B.</span> By decreasing the clock time or increasing the clock rate, or by using pipelining.</p>
+<p><span style="color: #e03e2d;">C.</span> By decreasing the number of required cycles or improve the ISA or Compiler.</p>
+<p><span style="color: #2dc26b;">D.</span> All of the above are ways to improve CPU performance.</p>
+<p>&nbsp;</p>
+<p>(<strong>The correct answer:</strong> D, all of the above are ways to improve the CPU performance since the CPU performance<span>&nbsp;is determined by execution time as performance is inversely proportional to execution time, and so decreasing the time of cycles would increase the performance.</span>)</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>A certain computer, with 2 cycles per instruction, predicts the branch wrong 25% of the time resulting in a 1 cycle stall, and lw/sw instructions need to stall 30% of the time with a 1 cycle stall and 10% of the time with a 2 cycle stall. The computer also misses a write/read memory data 1% of the time requiring a 100 cycle stall. Give a program with 50% sw/lw instructions and 10% branch instruction, how much slower is this computer than and ideal computer(no stalls).</p>
+<p>0.5*0.3*1 + 0.5 * 0.1* 2 + 0.1 * 0.25 * 1 + 100*0.5 * 0.01 + 2 = 2.775 cycles per instruction</p>
+<p>extra 1 cycle for 3% of lw/sw + extra 2 for 10% lw/sw + extra 1 for 25% branch + extra 100 for a miss in data memory( only during lw/sw) + 2 for all</p>
+<p>2.775 / 2 = ideal computer is 1.388 times faster</p>
+</div><br><h1>I&J-Type Instruction Formats</h1><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><span>(Mult. Choice) Which of the following is true of the </span><i><span>addi</span></i><span> and the </span><i><span>andi</span></i><span> instructions?</span></p>
+<p><i></i></p>
+<p>a. <i><span>andi</span></i><span> allows for a larger immediate (provides more bits in the immediate field) than </span><i><span>addi</span></i><span>.</span></p>
+<p><span>b. <i>andi</i> requires a zero extension of the immediate while <i>addi </i>uses a sign extended form of the immediate.</span></p>
+<p>c. <span>Both </span><i><span>addi </span></i><span>and </span><i><span>andi</span></i><span> have the same opcode.</span></p>
+<p>d. <span>Neither instruction can affect the highest order bits of the target register.</span></p>
+<p><span>e.&nbsp;</span><span>None of the above.</span></p>
+<p><span>Answer: B</span></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><span>Multiple Choice:</span></p>
+<p><span>Is it necessary to include a new instruction when dealing with immediates? If so, why?</span></p>
+<ol style="list-style-type: upper-alpha;">
+<li><span>It is not necessary, this is a trick question. I-type instructions have plenty of space for any immediate</span></li>
+<li><span>It is necessary to include the LUI instruction when dealing with negative immediates to perform 2’s complement arithmetic.</span></li>
+<li><span>It is necessay to include the LUI instruction when dealing with immediates that are too big for the immediate field.</span></li>
+<li><span>It is necessary to include the LUI instruction to tell the software to calculate the value of the immediate.</span></li>
+</ol>
+<p><span>&nbsp;</span></p>
+<p><strong><span>Answer: C. It is necessay to include the LUI instruction when dealing with immediates that are too big for the immediate field.</span></strong></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Q. There are only 4 instruction formats in MIPS, I-type, J-type, R-type, and F-type , why is it important for the MIPS architecture to have a small amount of instruction formats?</p>
+<p>&nbsp;</p>
+<p>A. Because it is easier to convert assembly with less instruction formats and it reduces the complexity of the architecture.</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Q: What is the largest possible size of a jump instruction, and if it isn't anything then why not?</p>
+<p>A:</p>
+<p>&nbsp;0000 1111 1111 1111 1111 1111 1111 1100 - 0000 0000 0000 0000 0000 0000 0000 0000 =&nbsp;</p>
+<p>268435452 lines.</p>
+<p>A jump instruction is limited by the segment, IE whatever the 4 MSBs are. These cannot change since they are appended to the instruction for jump, and therefore we can only go to instruction addresses that share the same MSBs.&nbsp;</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Question:<br>What does the following J-instruction translate to, give it is executed at 0x80000100:</p>
+<p><br>00 0010 0000 0000 0000 0000 1000 1000 01</p>
+<p><br>Answer:<br>j 1000 0000 0000 0000 0000 1000 1000 0100<br>j 0x80000884</p>
+<p><br>Question:<br>What does the following I-instruction translate to, 0x2218000C</p>
+<p><br>Answer:</p>
+<p>0010 00 10 000 1 1000 0000 0000 0000 1100</p>
+<p><br>addi $24, $16, 12<br>addi $t8, $s0, 12</p>
+</div><br><h1>Single Cycle Datapath</h1><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><strong>The MIPS pipelined datapath has a CPI of 5, so it has better performance then the single cycle data path which has a CPI of 1. True or False and explain your answer.</strong></p>
+<p><strong>&nbsp;</strong></p>
+<p><strong>Answer: We know that a 5 stage pipeline takes 5 cycles for an instruction and it executes all 5 instructions at the same time so the CPI is much less. The cycle time of the single cycle data path needs a very long time to cycle.</strong></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Question:</p>
+<p>Suppose stages of a single-cycle CPU have the following delays associated with them:</p>
+<p>Instruction Fetch: 50 ps</p>
+<p>Instruction Decode: 100 ps</p>
+<p>Execute (ALU): 175 ps</p>
+<p>Memory Access: 250 ps</p>
+<p>Writeback: 50 ps</p>
+<p>What determines the length of the clock cycle for this CPU? What is the length of the clock cycle (in ps)? (Bonus: what frequency does the CPU operate at?)</p>
+<p>&nbsp;</p>
+<p>Answer:</p>
+<p>The total delay associated with all components in summation determines the length of the clock cycle for a single-cycle CPU. The length of the clock cycle for this CPU is 50 + 100 + 175 + 250 + 50 = 625 ps. The CPU operates at 1/(625*10^-12) Hz (1.6 GHz).</p>
+<p>&nbsp;</p>
+<p>*Note: ps denotes pico-seconds</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><span>What is one of the purposes of a multiplexor (MUX) in a single cycle datapath?</span></p>
+<ol style="list-style-type: upper-alpha;">
+<li><span>To determine which component of the datapath data should be sent to based on its inputs.</span></li>
+<li><span>To multiply the value of PC by 4.</span></li>
+<li><span>To write data to memory.</span></li>
+<li><span>To select which one of its inputs will be sent to another component of the datapath.</span></li>
+</ol>
+<p><strong>Correct Answer: D</strong></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><span style="text-decoration: underline;"><strong>Multiple Choice:</strong></span></p>
+<p><strong>If an add instruction is fetched from memory, what will a relevant control signal and it's value?</strong></p>
+<p>a.) MemRead = 1</p>
+<p>b.) MemRead = 0</p>
+<p>c.) RegWrite = 0</p>
+<p>d.) RegWrite = 1</p>
+<p><strong>Correct Answer: The correct answer is D. This is because the add instruction is known for writing to a register. For example add $s0, $t0, $t1 the value of $t0 + $t1 will be stored into $s0. Therefore, it will be written to a register and the control signal will be 1 for RegWrite.</strong></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><img src="https://elearning.mines.edu/users/11401/files/3077323/preview?verifier=O2dRK2bqAlAvF3C2MDTm98VeJFTClJqBxxdbPriN" alt="CSCI341_HW13_AnnaOtterstetter.png" style="
+    object-fit: cover;
+    height: 500px;
+    width: 500px;">&nbsp;&nbsp;</p>
+</div><br><h1>Memory Hierarchies</h1><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><span>What are the advantages and disadvantages of using a single cycle datapath over pipelining?</span></p>
+<p><span>The advantages are that there are no data or control hazards in single cycle datapaths because each cycle is taken to completion before starting the next one. The computer doesn’t get confused or have the wrong data in the wrong place. In addition there are no wrong branches to be taken, in other words there is no opportunity for the computer to get mixed up.</span></p>
+<p><span>The major disadvantage is that the throughput is much slower than pipelining. </span></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+<p>Category: Single Cycle Data Path</p>
+<p>&nbsp;</p>
+<p>True/False: Single Cycle Implementation is the fastest way to run instructions.</p>
+<p>Answer: False, Pipelining is much faster since it allows multiple instructions to run at once.&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Say all instructions could potentially execute at a clock cycle of 4ns except the load instruction which executes at 5ns. If you are utilizing a single cycle implementation using a 5ns clock cycle how long would it take for 1 load instruction and 15 other instructions to execute.</p>
+<p>A: 64ns</p>
+<p>B: 65ns</p>
+<p>C: 75ns</p>
+<p>D: 80ns</p>
+<p>&nbsp;</p>
+<p>The answer is D because in a single cycle implementation, every instruction runs at the speed of the slowest instruction, so if the slowest instruction is 5ns and there are 16 total instructions 5 * 16 = 80.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Question: Why are single-cycle data paths slow?</p>
+<p>Answer: T<span>he clock cycle must have the same length for every instruction, and the longest possible path in the processor determines the clock cycle.</span></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><span>What control signals hold a value of 1 for an R type instruction in the Single Cycle Datapath?</span></p>
+<p><span>a. RegDst, RegWrite</span></p>
+<p><span>b. ALUsrc, MemToReg, RegWrite, MemRead</span></p>
+<p><span>c. ALUsrc, MemWrite</span></p>
+<p><span>d. RegDst, MemWrite</span></p>
+<p>&nbsp;</p>
+<p><span>Correct answer: a</span></p>
+<p><span>B is control signals for lw</span></p>
+<p><span>C is control signals for sw</span></p>
+<p><span>D writes to memory instead of register</span></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>When constructing a single cycle datapath, how does the datapath change when using different instructions? How do a branch datapath differ from a load, or addition datapath?</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <ol>
+<li>In a single-cycle datapath, suppose the RegWrite signal was not working correctly and was always set to 0 regardless of what it should be.</li>
+</ol>
+<p>Which instruction(s) would not work correctly?</p>
+<p>a.&nbsp; lw</p>
+<p>b. and</p>
+<p>c. sub</p>
+<p>d. sw</p>
+<p>e. a, b and c</p>
+<p>f. All of the above</p>
+<p>&nbsp;</p>
+<p>ANSWER: f</p>
+<p>Reason: R format instructions need to write their results to the register file as does lw. &nbsp;</p>
+<p>&nbsp;</p>
+<ol start="2">
+<li>&nbsp;Suppose the ALUScr control signal and was always set to 0 regardless of what it should be. This means that ALU is stuck to have its second</li>
+</ol>
+<p>operand coming from the register. What instructions would not work correctly?</p>
+<p>&lt;Free Response&gt;</p>
+<p>I Type instructions with a 16 bit immediate constant would not would. Examples are lw, sw, beq or ori. &nbsp;</p>
+<p>&nbsp;</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><img src="https://elearning.mines.edu/users/17334/files/3064540/preview?verifier=4iPjWjeznpz4iYzO7kxpIPpNEFXJVdALOqMEK63N" alt="CSCI341_HW13B_Q9_AmiyaPrasad.pdf.png">&nbsp;&nbsp;</p>
+</div><br><h1>Pipelined Datapath</h1><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>My questions were kind of short so I made two instead of one.</p>
+<p>Q. When using the 6-bit function field as input to ALU control, which pipeline register must the bits be included in?</p>
+<ol>
+<li>MEM/WB</li>
+<li>IF/ID</li>
+<li>EX/MEM</li>
+<li>ID/EX</li>
+</ol>
+<p>A. d is the correct answer.</p>
+<p>&nbsp;</p>
+<p>Q. Explain why grouping ALU control signals and register write signals is helpful in a pipelined datapath.</p>
+<p>A. This is helpful because in a pipelined datapath, for a R-type instruction, the ALUOp and ALUSrc signals are used in the instruction's third clock cycle whereas the RegWrite control signal is used in the instruction's fifth clock cycle. As a result, grouping them by the stage each is used in is helpful.</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <table width="576">
+<tbody>
+<tr>
+<td width="576">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="576">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="576">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="576">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="576">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="576">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="576">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="576">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="576">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="576">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="576">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="576">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="576">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="576">
+<p>&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td width="576">
+<p>&nbsp;</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Numbering Systems:</p>
+<p>(Free Response) Complete the following table of number conversions:</p>
+<p>&nbsp;</p>
+<table width="624">
+<tbody>
+<tr>
+<td>
+<p>Decimal</p>
+</td>
+<td>
+<p>Unsigned Binary</p>
+</td>
+<td>
+<p>Hexadecimal</p>
+</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>
+<p>CC</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>6969</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>
+<p>1001001</p>
+</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>
+<p>EC</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>1234</p>
+</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>Answer:</p>
+<p>&nbsp;</p>
+<table width="624">
+<tbody>
+<tr>
+<td>
+<p>Decimal</p>
+</td>
+<td>
+<p>Unsigned Binary</p>
+</td>
+<td>
+<p>Hexadecimal</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>204</p>
+</td>
+<td>
+<p>11001100</p>
+</td>
+<td>
+<p>CC</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>6969</p>
+</td>
+<td>
+<p>0001101100111001</p>
+</td>
+<td>
+<p>1B39</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>73</p>
+</td>
+<td>
+<p>1001001</p>
+</td>
+<td>
+<p>49</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>236</p>
+</td>
+<td>
+<p>11101100</p>
+</td>
+<td>
+<p>EC</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>1234</p>
+</td>
+<td>
+<p>10011010010</p>
+</td>
+<td>
+<p>4D2</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Floating Point Numbers:</p>
+<p>If a single precision floating point number has the exponent bits adding to 255 and the fraction bits add to a nonzero number, the object represented is</p>
+<ol>
+<li><span style="color: #e03e2d;">NaN (Not a Number)</span></li>
+<li>Infinity</li>
+<li>Floating point number</li>
+<li>Denormalized number</li>
+</ol>
+<p>MIPS Memory Access:</p>
+<p>Assume variables t, u, v are assigned to registers $t1, $t2, and $t3. Assume $s1 points to the 15th element of the array C. For the MIPS statements below, provide a corresponding C statement:</p>
+<p>srl $t1, $t1, 7</p>
+<p>srl $t3, $t3, 4</p>
+<p>addi $s1, $s1, -12</p>
+<p>add $s1, $s1, $t1</p>
+<p>add $s1, $s1, $t3</p>
+<p>lw $t3, 0($s1)</p>
+<p><span style="color: #e03e2d;">Answer: v = C[12 +t/32 + v/4]</span></p>
+<p>&nbsp;</p>
+<p>MIPS Bitwise Instructions:</p>
+<p>Write MIPS Instructions to load the first byte of data held in the array “myArray” to $t3 in 2 instructions or less.</p>
+<p><span style="color: #e03e2d;">la $t2, myArray</span></p>
+<p><span style="color: #e03e2d;">lb $t3, 0($t2)</span></p>
+<p>&nbsp;</p>
+<p>MIPS Arithmetic Instructions/ MIPS to C Translation:</p>
+<p>Assume variables t, u, and v are assigned to registers $s0, $s1, $s2. Translate the following C statements to MIPS instructions.</p>
+<ol>
+<li>v = -v</li>
+</ol>
+<p><span style="color: #e03e2d;">sub $s2, $s2, $s2</span></p>
+<p><span style="color: #e03e2d;">sub $s2, $s2, $s2</span></p>
+<ol>
+<li>t = u+4v</li>
+</ol>
+<p><span style="color: #e03e2d;">sll $s2, $s2, 2</span></p>
+<p><span style="color: #e03e2d;">add$s0, $s1, $s2</span></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p>MIPS Recursion:</p>
+<p>A programmer forgets to include a recursive case, and the function doesn’t work correctly Why?</p>
+<p><span style="color: #e03e2d;">Without a recursive case, and a base case, the program will never do as expected.</span></p>
+<p>&nbsp;</p>
+<p>R-Type Instruction Formats:</p>
+<p>Identify [Rd], [Rs], [Rt] in the following MIPS code.</p>
+<p>Add $s1, $t5, $t3</p>
+<p><span style="color: #e03e2d;">[Rd]: $s1</span></p>
+<p><span style="color: #e03e2d;">[Rs]: $t5</span></p>
+<p><span style="color: #e03e2d;">[Rt]: $t3</span></p>
+<p>I&amp;J-Type Instruction Formats</p>
+<p>Provide hex representation of the following MIPS instructions:</p>
+<p>lw $t4, 40($t0)</p>
+<p>j Loop (Assume Loop points at the address 0x0005BC00)</p>
+<p><span style="color: #e03e2d;">0x8D880028</span></p>
+<p><span style="color: #e03e2d;">0x0800016F</span></p>
+<p>CPU Performance:</p>
+<p>Suppose we have two implementations of the same instruction set architecture. Computer A has a clock cycle time of 200 ps and a CPI of 3.2 for some program, and computer B has a clock cycle time of 400 ps and a CPI of 2.3 for the same program. Which computer is faster for this program and by how much?</p>
+<p><span style="color: #e03e2d;">Computer A:&nbsp;&nbsp; I*3.2 clock cycles</span></p>
+<p><span style="color: #e03e2d;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I*3.2*200 = 640*I ps</span></p>
+<p><span style="color: #e03e2d;">Computer B: &nbsp; I*2.3 clock cycles</span></p>
+<p><span style="color: #e03e2d;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I*2.3*400 = 920*I ps</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span style="color: #e03e2d;">Computer A is 1.4375 times faster than Computer B</span></p>
+<p>&nbsp;</p>
+<p>Single Cycle Datapath:</p>
+<p>&nbsp;</p>
+<p>Why do we not use a single cycle datapath?</p>
+<p><span style="color: #e03e2d;">We don’t use the single cycle datapath because it is too slow. Only one instruction may pass through it at a time which means that it is used for instructional purposes only.</span></p>
+<p>&nbsp;</p>
+<p>Pipelined Datapath:</p>
+<p>What is the maximum number of instructions that can be in a pipelined datapath?</p>
+<p><span style="color: #e03e2d;">There are 5 steps in the single cycle datapath, which means there can be up to 5 instructions running through it at once.</span></p>
+<p>&nbsp;</p>
+<p>Data Hazards/Control Hazards:</p>
+<p>Why do data hazards occur?</p>
+<p><span style="color: #e03e2d;">Data hazards occur because memory needs to access certain elements before certain elements exist and therefore run into data hazards.</span></p>
+<p>Memory Hierarchies:</p>
+<p>Where does the fastest memory lie in relation to the processor?</p>
+<p><span style="color: #e03e2d;">The fastest memory lies nearest to the processor and the slowest lies further away from the processor.</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><span style="color: var(--ic-brand-font-color-dark); font-family: inherit; font-size: 1rem;">Which of the following lists all of the contents of the ID/EX register?</span></p>
+<p>a. PC+4, SignExtImm, ReadData2, Write Register, Control</p>
+<p>b. PC+4, Zero, ALUResult, WriteRegister, ReadData2, Control</p>
+<p>c. PC+4, ReadData1, SignExtImm, ReadData2, Write Register, Control</p>
+<p>d. PC+4, Instruction, Control</p>
+<p>&nbsp;</p>
+<p>Correct answer: C</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Q: Which of the following statements about pipelined datapath is false? Select the correct answer and explain your reasoning.</p>
+<p>A) In pipelined datapath, multiple instructions are overlapped in instruction.</p>
+<p>B) The time to "fill" and "drain" the pipeline reduces speed up.</p>
+<p>C) Pipelining helps latency of workload, not throughput.</p>
+<p>D) The pipeline rate is limited by the slowest pipeline stage.</p>
+<p>The correct answer is C. Pipelining actually helps throughput of the entire workload, not latency. Remember, latency is the time an individual task takes. For example, if we were to run a pipeline for washing laundry, that wouldn't change the time each individual task takes. Running clothes through the washer still takes 30 minutes with or without pipelining. Pipelining, however, does reduce the amount of time the whole process takes, or the number of instructions that we have to run. This is the throughput.</p>
+<p>&nbsp;</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Free Response Question:</p>
+<p>Given the following four instructions and assuming a standard pipelined datapath how many cycles does it take to execute this code with:</p>
+<ol>
+<li>Forwarding</li>
+<li>Without forwarding</li>
+</ol>
+<p>If there is forwarding involved, what operation is the ALU performing in cycle 3?</p>
+<p>&nbsp;</p>
+<p>add $s0, $s1, $s2</p>
+<p>sub $t0, $s0, s1</p>
+<p>lw $t1, 0($s5)</p>
+<p>add $s6, $t1, $t2</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>ANSWER:</p>
+<p>No forwarding: <span style="background-color: #f1c40f;">10 cycles</span></p>
+<table style="border-collapse: collapse; width: 97.1831%; height: 145px;" border="1">
+<tbody>
+<tr style="height: 29px;">
+<td style="width: 9.88142%; height: 29px;"></td>
+<td style="width: 9.88142%; height: 29px;">1</td>
+<td style="width: 10.0132%; height: 29px;">2</td>
+<td style="width: 10.0132%; height: 29px;">3</td>
+<td style="width: 10.0132%; height: 29px;">4</td>
+<td style="width: 10.0132%; height: 29px;">5</td>
+<td style="width: 10.0132%; height: 29px;">6</td>
+<td style="width: 10.0132%; height: 29px;">7</td>
+<td style="width: 10.0132%; height: 29px;">8</td>
+<td style="width: 5.0066%; height: 29px;">9</td>
+<td style="width: 5.0066%;">10</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 9.88142%; height: 29px;">add</td>
+<td style="width: 9.88142%; height: 29px;">ID</td>
+<td style="width: 10.0132%; height: 29px;">DE</td>
+<td style="width: 10.0132%; height: 29px;">EX</td>
+<td style="width: 10.0132%; height: 29px;">MEM</td>
+<td style="width: 10.0132%; height: 29px;">WB</td>
+<td style="width: 10.0132%; height: 29px;"></td>
+<td style="width: 10.0132%; height: 29px;"></td>
+<td style="width: 10.0132%; height: 29px;"></td>
+<td style="width: 5.0066%; height: 29px;"></td>
+<td style="width: 5.0066%;"></td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 9.88142%; height: 29px;">sub</td>
+<td style="width: 9.88142%; height: 29px;"></td>
+<td style="width: 10.0132%; height: 29px;">Stall</td>
+<td style="width: 10.0132%; height: 29px;">ID</td>
+<td style="width: 10.0132%; height: 29px;">DE</td>
+<td style="width: 10.0132%; height: 29px;">EX</td>
+<td style="width: 10.0132%; height: 29px;">MEM</td>
+<td style="width: 10.0132%; height: 29px;">WB</td>
+<td style="width: 10.0132%; height: 29px;"></td>
+<td style="width: 5.0066%; height: 29px;"></td>
+<td style="width: 5.0066%;"></td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 9.88142%; height: 29px;">lw</td>
+<td style="width: 9.88142%; height: 29px;"></td>
+<td style="width: 10.0132%; height: 29px;"></td>
+<td style="width: 10.0132%; height: 29px;"></td>
+<td style="width: 10.0132%; height: 29px;">ID</td>
+<td style="width: 10.0132%; height: 29px;">DE</td>
+<td style="width: 10.0132%; height: 29px;">EX</td>
+<td style="width: 10.0132%; height: 29px;">MEM</td>
+<td style="width: 10.0132%; height: 29px;">WB</td>
+<td style="width: 5.0066%; height: 29px;"></td>
+<td style="width: 5.0066%;"></td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 9.88142%; height: 29px;">add</td>
+<td style="width: 9.88142%; height: 29px;"></td>
+<td style="width: 10.0132%; height: 29px;"></td>
+<td style="width: 10.0132%; height: 29px;"></td>
+<td style="width: 10.0132%; height: 29px;"></td>
+<td style="width: 10.0132%; height: 29px;">Stall</td>
+<td style="width: 10.0132%; height: 29px;">ID</td>
+<td style="width: 10.0132%; height: 29px;">DE</td>
+<td style="width: 10.0132%; height: 29px;">EX</td>
+<td style="width: 5.0066%; height: 29px;">MEM</td>
+<td style="width: 5.0066%;">WB</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>Forwarding: <span style="background-color: #f1c40f;">9 cycles</span></p>
+<table style="border-collapse: collapse; width: 97.1831%;" border="1">
+<tbody>
+<tr>
+<td style="width: 9.88142%;"></td>
+<td style="width: 9.88142%;">1</td>
+<td style="width: 10.0132%;">2</td>
+<td style="width: 10.0132%;">3</td>
+<td style="width: 10.0132%;">4</td>
+<td style="width: 10.0132%;">5</td>
+<td style="width: 10.0132%;">6</td>
+<td style="width: 10.0132%;">7</td>
+<td style="width: 10.0132%;">8</td>
+<td style="width: 10.0132%;">9</td>
+</tr>
+<tr>
+<td style="width: 9.88142%;">add</td>
+<td style="width: 9.88142%;">ID</td>
+<td style="width: 10.0132%;">DE</td>
+<td style="width: 10.0132%;"><span style="background-color: #c2e0f4;">EX</span></td>
+<td style="width: 10.0132%;">MEM</td>
+<td style="width: 10.0132%;">WB</td>
+<td style="width: 10.0132%;"></td>
+<td style="width: 10.0132%;"></td>
+<td style="width: 10.0132%;"></td>
+<td style="width: 10.0132%;"></td>
+</tr>
+<tr>
+<td style="width: 9.88142%;">sub</td>
+<td style="width: 9.88142%;"></td>
+<td style="width: 10.0132%;">ID</td>
+<td style="width: 10.0132%;">DE</td>
+<td style="width: 10.0132%;"><span style="background-color: #c2e0f4;">EX</span></td>
+<td style="width: 10.0132%;">MEM</td>
+<td style="width: 10.0132%;">WB</td>
+<td style="width: 10.0132%;"></td>
+<td style="width: 10.0132%;"></td>
+<td style="width: 10.0132%;"></td>
+</tr>
+<tr>
+<td style="width: 9.88142%;">lw</td>
+<td style="width: 9.88142%;"></td>
+<td style="width: 10.0132%;"></td>
+<td style="width: 10.0132%;">ID</td>
+<td style="width: 10.0132%;">DE</td>
+<td style="width: 10.0132%;">EX</td>
+<td style="width: 10.0132%;"><span style="background-color: #c2e0f4;">MEM</span></td>
+<td style="width: 10.0132%;">WB</td>
+<td style="width: 10.0132%;"></td>
+<td style="width: 10.0132%;"></td>
+</tr>
+<tr>
+<td style="width: 9.88142%;">add</td>
+<td style="width: 9.88142%;"></td>
+<td style="width: 10.0132%;"></td>
+<td style="width: 10.0132%;"></td>
+<td style="width: 10.0132%;">Stall</td>
+<td style="width: 10.0132%;">ID</td>
+<td style="width: 10.0132%;">DE</td>
+<td style="width: 10.0132%;"><span style="background-color: #c2e0f4;">EX</span></td>
+<td style="width: 10.0132%;">MEM</td>
+<td style="width: 10.0132%;">WB</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>If there is forwarding involved, what operation is the ALU performing in cycle 3? <span style="background-color: #f1c40f;">It is performing addition</span></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>In the "corrected" pipelined datapath, which registers in the pipeline does the write register pass through? (select all that apply)</p>
+<p>A. IF/ID</p>
+<p>B. ID/EX</p>
+<p>C. EX/MEM</p>
+<p>D. MEM/WB</p>
+<p>Answer: B, C, D</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><span>Pipeline Question: MemWrite and MemRead are in…</span></p>
+<ol>
+<li aria-level="1"><span>Instruction fetch</span></li>
+<li aria-level="1"><span>Instruction decode</span></li>
+<li aria-level="1"><span>Memory address</span></li>
+<li aria-level="1"><span>Execution</span></li>
+</ol>
+<p>&nbsp;</p>
+<p><span>Answer: C</span></p>
+<p>&nbsp;</p>
+<p><span>Which is not part of execution?</span></p>
+<ol>
+<li aria-level="1"><span>ALU operates</span></li>
+<li aria-level="1"><span>Data memory is written</span></li>
+<li aria-level="1"><span>ID/EX register is read, and the EX/MEM register is written</span></li>
+</ol>
+<p>&nbsp;</p>
+<p><span>Answer:&nbsp; B</span></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+<p><span> </span></p>
+<p><span>S: Pipelined Datapath</span></p>
+<p>&nbsp;</p>
+<p><span>Why is there a potential issue for the functionality of writing back a register? How can this be corrected?</span></p>
+<ol>
+<li aria-level="1"><span>When the writeback is attempting to write data back to a register, it is two stages removed from the registers, meaning another instruction is likely occupying that stage at the point the writeback needs to use that register. This means that the register in all likelihood does match the register the instruction is attempting to write back to. This issue is corrected by bringing the destination register through the pipeline registers, preserving it for the writeback phase.</span></li>
+</ol>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Question: To pipeline the datapath, why do we need registers in between the 5 sections?</p>
+<p>Answer: The registers are required to hold the data needed for the instruction as it moves down the pipeline, and to save data in between steps. For example, when an instruction wants to write back to a register in the WB stage, the IF stage no longer holds the register, it has been overwritten. That data must travel with the instruction to be used at the end.</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Pipeline question for final:</p>
+<p>What is a common logic convention used when doing the IF and ID stage of an lw instruction? And why?</p>
+<p>Answer: A common logic convention is that the processor reads both registers and sign-extends the immediate. This is done because the processer doesn't know what instruction is being decoded. And, by reading all three- the two registers and sign-extend the immediate- it simplifies the control. Thus the logic convention exists to simplify the control for the processor, even though not all three operands are used.&nbsp;</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><span>Q: If an R-type instruction is in a pipelined datapath, why does it require 5 cycles to complete instead of 4?</span></p>
+<ol>
+<li aria-level="1"><span>We need a NOOP stage for R-type instructions in order to avoid pipeline errors.</span></li>
+<li aria-level="1"><span>We always need to include a Mem stage in R-type instructions, even if the datapath is not pipelined.</span></li>
+<li aria-level="1"><span>If we only have 4 cycles, the resulting error will immediately crash the program.</span></li>
+<li aria-level="1"><span>We do not need 5 cycles for R-type instructions in a pipelined datapath, only 4 will work.</span></li>
+</ol>
+<p>&nbsp;</p>
+<p><span>A is the answer for this question</span></p>
+<p><br><br></p>
+<p><span>Q: Why does the IF/ID Pipeline register not hold the control signal?</span></p>
+<ol>
+<li aria-level="1"><span>The control signals do not need to be passed between datapath stages.</span></li>
+<li aria-level="1"><span>The control signals only need to be updated once, in the Decode stage.</span></li>
+<li aria-level="1"><span>The control signals are found when the instruction is decoded, so they are not used in a program’s IF stage.</span></li>
+<li aria-level="1"><span>The control signals are not found until the execution stage.</span></li>
+</ol>
+<p>&nbsp;</p>
+<p><span>C is the answer for this question.</span></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><span>Pipelined Datapath Question:</span></p>
+<p>&nbsp;</p>
+<p><span>(Free Response) What is the structural difference between a pipelined datapath and a single cycle datapath?</span></p>
+<p><br><br></p>
+<p><span>Answer:</span></p>
+<p><span>The pipelined datapath is separated into stages with registers in between each stage.</span></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>Which of these is not stored in the ID/EX pipeline register?</p>
+<p>A. PC + 4</p>
+<p>B. Instruction</p>
+<p>C. SignExtImm</p>
+<p>D. Control</p>
+<p>&nbsp;</p>
+<p>Correct Answer: B</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+<p>Topic: Pipelined Datapath</p>
+<p>&nbsp;</p>
+<p>Free Response Question: Name all of the stages of the pipelined datapath and give a short explanation of their purposes.</p>
+<p>&nbsp;</p>
+<p>Answer:</p>
+<p>IF- Instruction Fetch-- This is where the current instruction is retrieved from memory.</p>
+<p>ID- Instruction Decode-- This is where the current instruction is interpreted. The registers and control signals are specified here.</p>
+<p>EX- Execute-- This is where the instruction is actually performed. Calculations are made by the ALU.</p>
+<p>MEM- Memory-- This is where data is retrieved or stored in memory for lw and sw instructions.</p>
+<p>WB- Writeback-- This is where data is written back to the registers.</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>What are the 5 stages of the pipelined data path, and what happens in each stage?<br>IF - Instruction Fetch, the instruction at the address in the Program Counter is fetched and saved to the IF/ID pipeline register. This stage also increments PC by 4<br>ID - Instruction Decode, the instruction is broken up into several different interpretations, and control signals based on the instruction's OP and Funct fields are set. All necessary components for the instruction to execute are saved to the ID/EX register.<br>EX - Execute, The ALU is utilized in this stage if the instruction requires a calculation. If it is a jump instruction, the jump address is also calculated using the Adder here. The result of either the Adder or the ALU is put into the EX/MEM pipeline register.<br>MEM - Memory access. Memory is either read from or written to in this stage. Either the result calculated by the ALU or the data read from memory is passed to the MEM/WB register.</p>
+<p>WB - Write-back. If the instruction requires the result of the calculation to be written to a register, the WB stage passes the proper result to the register file, and saves it to the correct register.</p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>What items are found in the ID stage of a MIPS pipelined datapath?</p>
+<p>answers: Register File, Sign, Extender, Control Unit</p>
+<p>False answers: MUX, Bit Shifter, Memory, Adder, ALU</p>
+</div><br><h1>Data Hazards</h1><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><span>Consider the following data instructions:&nbsp;</span></p>
+<p>&nbsp;</p>
+<ol>
+<li aria-level="1"><span>lw $s0, 0($t0)&nbsp;</span></li>
+<li aria-level="1"><span>add $s1, $s1, $s0</span></li>
+<li aria-level="1"><span>sub $s2, $s4, $t1&nbsp;</span></li>
+<li aria-level="1"><span>lw $s3, 0($t2)&nbsp;</span></li>
+<li aria-level="1"><span>sw $s3, 0($t3)&nbsp;</span></li>
+</ol>
+<p>&nbsp;</p>
+<p><span>Which lines contain data hazards and how many stalls would be needed? In addition, write out which r</span><span>egisters would data need to be forwarded to and from. Then finally explain why each of the data hazards occurs.&nbsp;</span></p>
+<p>&nbsp;</p>
+<p><span>Answer:&nbsp;</span></p>
+<p><span>Two stalls would be needed. They are between lines 1 and 2. The forwarding would be from MEM to EX. And between lines 4 and 5. The forwarding would be from MEM to MEM.&nbsp; The stall between lines 1 and 2 occurs because line 2 relies on $s0 and $s0 will not be fully written yet so a hazard occurs. The stall between lines 4 and 5 will occur because of line 5’s dependency on $s3. $s3 will not be fully written yet so a hazard occurs. </span></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><span>Q: Which type of data hazard occurs if an instruction in the EX/MEM stage has a destination register which is the same as the source register for an instruction in the ID/EX stage and how is it addressed by the datapath?</span></p>
+<p><span>&nbsp;</span></p>
+<p><span>A: An EX hazard exists. The datapath will forward the result from the instruction in the EX/MEM stage to the instruction in the ID/EX stage in order to correct for this hazard.</span></p>
+</div><br><h1>Memory Hierarchies</h1><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><span>Memory Hierarchies:</span></p>
+<p><span>A 4KB cache is a 2-Way Associative Cache with 4 word blocks. After the following reads are executed, what will be the contents of the cache? Additionally, is each read is hit, miss, or miss and replace, assuming that the reads happen sequentially as listed.</span></p>
+<table border="1">
+<tbody>
+<tr>
+<td colspan="4" width="456">
+<p><span>Memory</span></p>
+</td>
+</tr>
+<tr>
+<td width="114">
+<p><span>Address</span></p>
+</td>
+<td width="114">
+<p><span>Value</span></p>
+</td>
+<td width="114">
+<p><span>Address</span></p>
+</td>
+<td width="114">
+<p><span>Value</span></p>
+</td>
+</tr>
+<tr>
+<td width="114">
+<p><span>00000010</span></p>
+</td>
+<td width="114">
+<p><span>A</span></p>
+</td>
+<td width="114">
+<p><span>00000030</span></p>
+</td>
+<td width="114">
+<p><span>I</span></p>
+</td>
+</tr>
+<tr>
+<td width="114">
+<p><span>00000014</span></p>
+</td>
+<td width="114">
+<p><span>B</span></p>
+</td>
+<td width="114">
+<p><span>00000034</span></p>
+</td>
+<td width="114">
+<p><span>J</span></p>
+</td>
+</tr>
+<tr>
+<td width="114">
+<p><span>00000018</span></p>
+</td>
+<td width="114">
+<p><span>C</span></p>
+</td>
+<td width="114">
+<p><span>00000038</span></p>
+</td>
+<td width="114">
+<p><span>K</span></p>
+</td>
+</tr>
+<tr>
+<td width="114">
+<p><span>0000001C</span></p>
+</td>
+<td width="114">
+<p><span>D</span></p>
+</td>
+<td width="114">
+<p><span>0000003C</span></p>
+</td>
+<td width="114">
+<p><span>L</span></p>
+</td>
+</tr>
+<tr>
+<td width="114">
+<p><span>00000810</span></p>
+</td>
+<td width="114">
+<p><span>E</span></p>
+</td>
+<td width="114">
+<p><span>00001030</span></p>
+</td>
+<td width="114">
+<p><span>M</span></p>
+</td>
+</tr>
+<tr>
+<td width="114">
+<p><span>00000814</span></p>
+</td>
+<td width="114">
+<p><span>F</span></p>
+</td>
+<td width="114">
+<p><span>00001034</span></p>
+</td>
+<td width="114">
+<p><span>N</span></p>
+</td>
+</tr>
+<tr>
+<td width="114">
+<p><span>00000818</span></p>
+</td>
+<td width="114">
+<p><span>G</span></p>
+</td>
+<td width="114">
+<p><span>00001038</span></p>
+</td>
+<td width="114">
+<p><span>O</span></p>
+</td>
+</tr>
+<tr>
+<td width="114">
+<p><span>0000081C</span></p>
+</td>
+<td width="114">
+<p><span>H</span></p>
+</td>
+<td width="114">
+<p><span>0000103C</span></p>
+</td>
+<td width="114">
+<p><span>P</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><span>Cache:&nbsp;</span></p>
+<table border="1">
+<tbody>
+<tr>
+<td width="67">
+<p><span>Index</span></p>
+</td>
+<td width="129">
+<p><span>Tag</span></p>
+</td>
+<td width="138">
+<p><span>Data</span></p>
+</td>
+<td width="147">
+<p><span>Tag</span></p>
+</td>
+<td width="147">
+<p><span>Data</span></p>
+</td>
+</tr>
+<tr>
+<td width="67">
+<p><span>0</span></p>
+</td>
+<td width="129">
+<p><span>&nbsp;</span></p>
+</td>
+<td width="138">
+<p><span>&nbsp;</span></p>
+</td>
+<td width="147">
+<p><span>0</span></p>
+</td>
+<td width="147">
+<p><span>F G H I</span></p>
+</td>
+</tr>
+<tr>
+<td width="67">
+<p><span>1</span></p>
+</td>
+<td width="129">
+<p><span>4</span></p>
+</td>
+<td width="138">
+<p><span>D E F G</span></p>
+</td>
+<td width="147">
+<p><span>1</span></p>
+</td>
+<td width="147">
+<p><span>E F G H</span></p>
+</td>
+</tr>
+<tr>
+<td width="67">
+<p><span>2</span></p>
+</td>
+<td width="129">
+<p><span>&nbsp;</span></p>
+</td>
+<td width="138">
+<p><span>&nbsp;</span></p>
+</td>
+<td width="147">
+<p><span>&nbsp;</span></p>
+</td>
+<td width="147">
+<p><span>&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td width="67">
+<p><span>3</span></p>
+</td>
+<td width="129">
+<p><span>1</span></p>
+</td>
+<td width="138">
+<p><span>J K L M</span></p>
+</td>
+<td width="147">
+<p><span>&nbsp;</span></p>
+</td>
+<td width="147">
+<p><span>&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td width="67">
+<p><span>4</span></p>
+</td>
+<td width="129">
+<p><span>&nbsp;</span></p>
+</td>
+<td width="138">
+<p><span>&nbsp;</span></p>
+</td>
+<td width="147">
+<p><span>1</span></p>
+</td>
+<td width="147">
+<p><span>K L M N</span></p>
+</td>
+</tr>
+<tr>
+<td width="67">
+<p><span>5</span></p>
+</td>
+<td width="129">
+<p><span>&nbsp;</span></p>
+</td>
+<td width="138">
+<p><span>&nbsp;</span></p>
+</td>
+<td width="147">
+<p><span>&nbsp;</span></p>
+</td>
+<td width="147">
+<p><span>&nbsp;</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><span>&nbsp;</span></p>
+<p><span>Instructions:</span></p>
+<p><span>Read Address 0x00000018</span></p>
+<p><span>Read Address 0x00001034</span></p>
+<p><span>Read Address 0x00000810</span></p>
+<p><span>Read Address 0x00000034</span></p>
+<p><span>Read Address 0x00000818</span></p>
+<p>&nbsp;</p>
+<p><strong>Answer</strong></p>
+<p><span>To help find the answer, it needs to be known how to break down the address bits.</span></p>
+<table border="1">
+<tbody>
+<tr>
+<td>Tag Bits</td>
+<td>Index Bits</td>
+<td>Offset Bits</td>
+</tr>
+<tr>
+<td>31-11</td>
+<td>10-4</td>
+<td>3-0</td>
+</tr>
+</tbody>
+</table>
+<p>This can be found by knowing:</p>
+<p>4 words per block = 16 bytes per block = 2<sup>4</sup><span>&nbsp;</span>=&gt; 4 Offset bits</p>
+<p>4 KB = 2<sup>12</sup><span>&nbsp;</span>Bytes = 4096 bytes / 16 bytes per block = 256 blocks/ 2 blocks per set = 128 set = 2<sup>7</sup><span>&nbsp;</span>=&gt; 7 Index bits</p>
+<p>Tag bits = 32-7-4=21 bits</p>
+<p>&nbsp;</p>
+<p><span>Read Address 0x00000018&nbsp;&nbsp;&nbsp;&nbsp; Cache Miss and Replace -&gt; C</span></p>
+<p><span>This read tries to access index 1, but neither block has a tag of 0, so it must replace one.</span></p>
+<p><span>Read Address 0x00001034 &nbsp;&nbsp;&nbsp;&nbsp;Cache Miss -&gt; N</span></p>
+<p><span>This read tries to access index 3, but the tag of 2 is not found so it must fetch it from memory.</span></p>
+<p><span>Read Address 0x00000810 &nbsp;&nbsp; &nbsp;Cache Hit -&gt; E</span></p>
+<p><span>This tries to access index 1, and the computer sees that there is a block in the index with a tag of 1, so this is a hit.</span></p>
+<p><span>Read Address 0x0000001C&nbsp;&nbsp; Cache Hit -&gt; D</span></p>
+<p><span>This is a hit from the block that was placed in the first index during the first read.</span></p>
+<table border="1">
+<tbody>
+<tr>
+<td width="67">
+<p><span>Index</span></p>
+</td>
+<td width="129">
+<p><span>Tag</span></p>
+</td>
+<td width="138">
+<p><span>Data</span></p>
+</td>
+<td width="147">
+<p><span>Tag</span></p>
+</td>
+<td width="147">
+<p><span>Data</span></p>
+</td>
+</tr>
+<tr>
+<td width="67">
+<p><span>0</span></p>
+</td>
+<td width="129">
+<p><span>&nbsp;</span></p>
+</td>
+<td width="138">
+<p><span>&nbsp;</span></p>
+</td>
+<td width="147">
+<p><span>0</span></p>
+</td>
+<td width="147">
+<p><span>F G H I</span></p>
+</td>
+</tr>
+<tr>
+<td width="67">
+<p><span>1</span></p>
+</td>
+<td width="129">
+<p><span>0</span></p>
+</td>
+<td width="138">
+<p><span>ABCD</span></p>
+</td>
+<td width="147">
+<p><span>1</span></p>
+</td>
+<td width="147">
+<p><span>E F G H</span></p>
+</td>
+</tr>
+<tr>
+<td width="67">
+<p><span>2</span></p>
+</td>
+<td width="129">
+<p><span>&nbsp;</span></p>
+</td>
+<td width="138">
+<p><span>&nbsp;</span></p>
+</td>
+<td width="147">
+<p><span>&nbsp;</span></p>
+</td>
+<td width="147">
+<p><span>&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td width="67">
+<p><span>3</span></p>
+</td>
+<td width="129">
+<p><span>1</span></p>
+</td>
+<td width="138">
+<p><span>J K L M</span></p>
+</td>
+<td width="147">
+<p><span>2</span></p>
+</td>
+<td width="147">
+<p><span>M N O P</span></p>
+</td>
+</tr>
+<tr>
+<td width="67">
+<p><span>4</span></p>
+</td>
+<td width="129">
+<p><span>&nbsp;</span></p>
+</td>
+<td width="138">
+<p><span>&nbsp;</span></p>
+</td>
+<td width="147">
+<p><span>1</span></p>
+</td>
+<td width="147">
+<p><span>K L M N</span></p>
+</td>
+</tr>
+<tr>
+<td width="67">
+<p><span>5</span></p>
+</td>
+<td width="129">
+<p><span>&nbsp;</span></p>
+</td>
+<td width="138">
+<p><span>&nbsp;</span></p>
+</td>
+<td width="147">
+<p><span>&nbsp;</span></p>
+</td>
+<td width="147">
+<p><span>&nbsp;</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><strong>Q:</strong><span> how many sets are present within a two way versus a four way set associative cache? How does this compare to a direct mapped cache?</span></p>
+<p><strong>A:</strong><span> a four way set associative cache will have half the number of sets that the two way does, given that the four way will half twice as much data per set. A direct mapped cache will have one piece of data per set (rather than two or four ), meaning that it will have twice as many sets as the two way set associative.&nbsp;</span></p>
+<p>&nbsp;</p>
+<p><span>This extra question references example 6.4.1 within Zybooks (and as such can be excluded from my grade on this assignment - I wrote it before reading the disclaimer to avoid copying from zybooks, but still feel that it is a useful process/question to practice):</span></p>
+<p><strong>Q: </strong><span>You are given a processor. It has a miss rate within it’s instruction cache of 5% and a miss rate within the data cache of 8%. The processor CPI is 4 and has no memory stalls. The miss penalty is 120 cycles for all given misses. How well will this processor be with no misses within the cache? The frequency of loads and stores is 42%.</span></p>
+<p><strong>A</strong><span>: </span><span> </span><span>instruction miss cycles = IC*5</span></p>
+<p><span>Data miss cycles = IC*42*8=3.36*IC</span></p>
+<p><span>CPI with stalls = (5+3.36)*IC = 8,86*IC</span></p>
+<p><span>Ratio: (8.86*IC*clock cycle)/(4*IC*clock cycles) = </span><strong>2.21 times better</strong></p>
+</div><br><h1>Control Hazards</h1><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p>One of the best ways to avoid a control hazard is to use a branch prediction model. Below are the ACTUAL branches that were taken (T) or not taken (NT) for a loop. Of all the models we used in class, which one would be the best to use for this instance and why? Assume starting is 00.</p>
+<p>Branch: 0&nbsp; &nbsp; 1&nbsp; &nbsp;2&nbsp; &nbsp;3&nbsp; &nbsp;4&nbsp; &nbsp; 5&nbsp; 6&nbsp; 7&nbsp; &nbsp;8</p>
+<p>Actual: NT&nbsp; T&nbsp; T&nbsp; NT&nbsp; NT&nbsp; T&nbsp; T&nbsp; T&nbsp; NT</p>
+<p>Answer:</p>
+<p>Always Taken or 1 Bit branch prediction would be most useful for this situation.</p>
+<p>Below is a picture of the correct/incorrect predictions for each predictor&nbsp;</p>
+<p><em> <span style="width: 753px; height: 185px; vertical-align: middle;" aria-label="Loading" data-placeholder-for="Question%20Ans.jpg">  </span></em></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><span>Control Hazard Question:</span></p>
+<p>&nbsp;</p>
+<ol>
+<li aria-level="1"><span>Consider the following code:&nbsp;</span></li>
+</ol>
+<p><span>for(int i = 0; i &lt; 10; i++) {</span></p>
+<p><span> </span><span>#do something</span><span><br></span><span>}</span></p>
+<p>&nbsp;</p>
+<p><span> </span><span>What would the sequence of a two-bit branch predictor be for the given C code? Assume </span><span> </span><span>the predictor starts at 00.&nbsp;</span></p>
+<p><span>a. NTTTTTTTTT</span></p>
+<p><span>b. NTTTTTTTTN</span></p>
+<p><span>c. NNTTTTTTTN</span></p>
+<p><span>d. NNTTTTTTTT</span></p>
+<p>&nbsp;</p>
+<p><span>d) is the correct answer. Since we are working with a two-bit predictor, it will make two N predictions until it switches to predicting T, to which it will continue to predict T for the rest of the execution.&nbsp;</span></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><strong>Problem </strong><span>: What is the difference between the correlation predictor and tournament branch predictor?</span></p>
+<p>&nbsp;</p>
+<p><strong>Solution</strong><span> : Tournament predictor utilizes multiple predictors for each branch and&nbsp; selection mechanism that chooses which predictors is next. For each branch a local information and global branch behavior predictions. The selector acts similar to the 1-bit and 2-bit predictors and chooses the more accurate predictor. Meanwhile, a correlating predictor also utilizes local behavior of a particular branch and global behavior of other branches. The selector is dependent on whether the previous branch is taken or not.&nbsp;</span></p>
+</div><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><span>Control Hazards Question:</span></p>
+<p>&nbsp;</p>
+<p><span>One way to avoid control hazards is to stall the pipeline. This method is often slower than another method. In a few sentences, describe what this other method is and why it is considered more effective than stalling the pipeline.</span></p>
+<p><br><br></p>
+<p><span>Answer (could definitely be shorter than this):</span></p>
+<p>&nbsp;</p>
+<p><span>The other method is branch prediction. Using a branch predictor, the computer would make a prediction based on what kind of predictor is being used (one-bit, two-bit, always taken, etc.) and assume that prediction is correct until proven otherwise. This is considered more effective as it is often faster than stalling the pipeline, as a correct prediction would incur no stalls, resulting in a faster CPI. Even in the worst case scenario, where every prediction is wrong, the CPI would be the same as stalling every time.</span></p>
+</div><br><h1>Memory Hierarchies</h1><div style="width: 600px; margin: 20px auto; border: 1px solid #888; padding: 20px;">
+  <p><br>Sample Question:</p>
+<p>Past versions of Radix Sort have not taken the memory hierarchy into account when analyzing its performance. What is one way the memory hierarchy could be used to improve the performance of Radix Sort?</p>
+<p><br>Answers:&nbsp;</p>
+<p>1) The data could be moved into a higher level of the memory hierarchy. This would reduce the miss penalties as the read/write times would be lower.</p>
+<p>2) Another fix would be to make the cache more associative. This would decrease the number of cache misses that occur, therefore decreasing the miss penalties.&nbsp;</p>
+<p>3) Changing the replacement scheme is another way to improve performance. By replacing the blocks at the correct time in the algorithm, data won't be removed from the cache before it is done being operated on, which decreases the cache miss rate.&nbsp;</p>
+</div>
